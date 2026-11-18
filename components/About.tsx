@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import Reveal from "./Reveal";
 import { profile, stats, languages } from "@/lib/data";
+import { useLang } from "./LanguageContext";
 import { SiNextdotjs, SiN8N, SiReact, SiSupabase } from "react-icons/si";
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
@@ -34,6 +35,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 }
 
 export default function About() {
+  const { lang } = useLang();
   return (
     <section id="about" className="mx-auto max-w-[1180px] px-4 py-24">
       <Reveal className="text-center">
@@ -70,7 +72,7 @@ export default function About() {
               <SiSupabase size={22} />
             </span>
             <span className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-2 text-sm font-bold text-ink shadow dark:bg-[#1a1a1a] dark:text-[#f5f5f5]">
-              <span className="font-urdu">{profile.name}</span>
+              {lang === "ur" ? <span className="font-urdu">{profile.name}</span> : profile.nameEn}
             </span>
           </div>
         </Reveal>
@@ -78,7 +80,7 @@ export default function About() {
         <Reveal delay={0.1}>
           <div className="space-y-6 text-[16px] leading-[1.6] text-[#666] dark:text-[#a3a3a3]">
             <p>
-              <strong className="text-ink dark:text-[#f5f5f5]">I&apos;m <span className="font-urdu">{profile.name}</span>, a Full-Stack Developer and Agentic AI Developer</strong> with a background in
+              <strong className="text-ink dark:text-[#f5f5f5]">I&apos;m {lang === "ur" ? <span className="font-urdu">{profile.name}</span> : profile.nameEn}, a Full-Stack Developer and Agentic AI Developer</strong> with a background in
               engineering — bridging the gap between beautiful design and working products.
             </p>
             <p>

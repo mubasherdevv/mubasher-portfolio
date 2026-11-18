@@ -17,10 +17,12 @@ import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import CursorDot from "@/components/CursorDot";
 import ScrollProgress from "@/components/ScrollProgress";
+import { LangProvider } from "@/components/LanguageContext";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-ink dark:bg-[#0a0a0a] dark:text-[#f5f5f5]">
+      <LangProvider>
       <CursorDot />
       <ScrollProgress />
       <Preloader />
@@ -59,6 +61,7 @@ export default function Home() {
 
       <Contact />
       <Footer />
+      </LangProvider>
     </main>
   );
 }

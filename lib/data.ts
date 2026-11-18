@@ -6,6 +6,7 @@
 
 export const profile = {
   name: "محمد مبشر",
+  nameEn: "Muhammad Mubasher",
   firstName: "مبشر",
   title: "Full-Stack Developer | Agentic AI Developer",
   heroLine1: "I'm a Full-Stack Developer",
@@ -18,6 +19,7 @@ export const profile = {
   phone: "+9200000000",
   phoneHref: "tel:+9200000000",
   location: "لاہور، پاکستان",
+  locationEn: "Lahore, Pakistan",
   timezone: "PKT (GMT+5)",
   linkedin: "https://www.linkedin.com/in/muhammad-mubasher2/",
   github: "https://github.com/mubasherdevv",

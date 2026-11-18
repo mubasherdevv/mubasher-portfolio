@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { profile, projects } from "@/lib/data";
 import Mockup from "./Mockup";
 import FluxLines from "./FluxLines";
+import { useLang } from "./LanguageContext";
 
 /** Reads the "dark" class on <html> (set by the theme script / toggle) and
     stays in sync when it changes, so the FluxLines colours flip with the theme. */
@@ -54,6 +55,7 @@ function FloatPill({
 
 export default function Hero() {
   const dark = useIsDark();
+  const { lang } = useLang();
   return (
     <section id="home" className="relative overflow-hidden pb-10 pt-32 sm:pt-36">
       {/* FluxLines (React Bits) — fluid WebGL lines behind the hero content.
@@ -81,8 +83,8 @@ export default function Hero() {
           <span className="absolute bottom-0 right-0 h-5 w-5 rounded-full border-2 border-white bg-emerald-500 dark:border-[#0a0a0a]" title="Available for work" />
         </motion.div>
         <motion.div {...fade(0.18)} className="relative z-10 -mt-3 flex justify-center">
-          <span className="font-urdu rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-[0_6px_20px_rgba(0,0,0,0.10)] ring-1 ring-neutral-100 dark:bg-[#161616] dark:text-neutral-300 dark:ring-[#262626]">
-            محمد مبشر
+          <span className={`${lang === "ur" ? "font-urdu" : ""} rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-[0_6px_20px_rgba(0,0,0,0.10)] ring-1 ring-neutral-100 dark:bg-[#161616] dark:text-neutral-300 dark:ring-[#262626]`}>
+            {lang === "ur" ? profile.name : profile.nameEn}
           </span>
         </motion.div>
 

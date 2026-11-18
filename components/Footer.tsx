@@ -1,8 +1,12 @@
+"use client";
+
 import Reveal from "./Reveal";
 import { profile } from "@/lib/data";
+import { useLang } from "./LanguageContext";
 import { SiGithub, SiYoutube } from "react-icons/si";
 
 export default function Footer() {
+  const { lang } = useLang();
   return (
     <footer className="w-full">
       <Reveal>
@@ -51,22 +55,29 @@ export default function Footer() {
                 {profile.phone}
               </a>
               <p className="mt-4 text-[16px] font-bold text-ink dark:text-[#f5f5f5]">Location</p>
-              <p className="mt-1 text-[15px] text-neutral-600 dark:text-neutral-400">{profile.location}</p>
+              <p className="mt-1 text-[15px] text-neutral-600 dark:text-neutral-400">{lang === "ur" ? profile.location : profile.locationEn}</p>
             </div>
           </div>
 
           <div className="mt-10 border-t border-neutral-200 pt-5 dark:border-[#262626]">
-            <p className="text-right text-sm text-neutral-500 dark:text-neutral-400">© 2026 <span className="font-urdu">{profile.name}</span>. All rights reserved</p>
+            <p className="text-right text-sm text-neutral-500 dark:text-neutral-400">© 2026 {lang === "ur" ? <span className="font-urdu">{profile.name}</span> : profile.nameEn}. All rights reserved</p>
           </div>
 
-          {/* Giant wordmark — Urdu name in Nastaliq; tall line-height so glyphs never clip */}
+          {/* Giant wordmark — Urdu name in Nastaliq in 'ur' mode, bold sans
+              uppercase in 'en' mode; orange + subtle glow in both. */}
           <div className="overflow-hidden pb-6 pt-6" aria-hidden="true">
-            <p className="wordmark wordmark-urdu font-urdu select-none text-center font-bold tracking-tight" style={{ fontSize: "clamp(64px, 12vw, 150px)" }}>
-              محمد مبشر
-            </p>
+            {lang === "ur" ? (
+              <p className="wordmark wordmark-urdu font-urdu select-none text-center font-bold tracking-tight" style={{ fontSize: "clamp(64px, 12vw, 150px)" }}>
+                محمد مبشر
+              </p>
+            ) : (
+              <p className="wordmark select-none whitespace-nowrap text-center font-bold uppercase tracking-tight" style={{ fontSize: "clamp(32px, 7vw, 110px)", lineHeight: 1.05 }}>
+                Muhammad Mubasher
+              </p>
+            )}
           </div>
           <div className="flex flex-wrap items-center justify-between gap-2 py-4 text-xs text-neutral-500 dark:text-neutral-400">
-            <span>Made with ♥ by <a href={profile.github} target="_blank" rel="noreferrer" className="font-urdu underline-offset-4 hover:text-[#ff6b00] hover:underline">محمد مبشر</a></span>
+            <span>Made with ♥ by <a href={profile.github} target="_blank" rel="noreferrer" className={`${lang === "ur" ? "font-urdu" : ""} underline-offset-4 hover:text-[#ff6b00] hover:underline`}>{lang === "ur" ? profile.name : profile.nameEn}</a></span>
             <span>
               Thank you <span className="font-bold text-[#ff6b00]">For scrolling</span>
             </span>

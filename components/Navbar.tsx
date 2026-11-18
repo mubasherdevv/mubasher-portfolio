@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { FiMoon, FiSun } from "react-icons/fi";
+import { useLang } from "./LanguageContext";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -24,6 +25,25 @@ function NavLink({ label, href, onClick }: { label: string; href: string; onClic
         {label}
       </span>
     </a>
+  );
+}
+
+/** Language toggle — "EN | اردو" pill, active language bold orange.
+    Switches the site's name/location strings instantly, persists in
+    localStorage ("mubasher-lang"). Default is English. */
+function LangToggle() {
+  const { lang, toggleLang } = useLang();
+  return (
+    <button
+      type="button"
+      onClick={toggleLang}
+      aria-label={lang === "en" ? "Switch to Urdu" : "Switch to English"}
+      className="flex h-10 shrink-0 items-center gap-1 rounded-full border border-neutral-200 px-2.5 text-[12px] font-bold transition hover:bg-neutral-100 dark:border-[#262626] dark:hover:bg-[#262626]"
+    >
+      <span className={lang === "en" ? "text-[#ff6b00]" : "text-neutral-400 dark:text-neutral-500"}>EN</span>
+      <span className="text-neutral-300 dark:text-neutral-600">|</span>
+      <span className={lang === "ur" ? "text-[#ff6b00]" : "text-neutral-400 dark:text-neutral-500"}>اردو</span>
+    </button>
   );
 }
 
@@ -96,7 +116,8 @@ export default function Navbar() {
         >
           {open ? "✕" : "☰"}
         </button>
-        <span className="hidden shrink-0 sm:block">
+        <span className="hidden shrink-0 items-center gap-1 sm:flex">
+          <LangToggle />
           <ThemeToggle />
         </span>
       </nav>
@@ -105,6 +126,10 @@ export default function Navbar() {
           {links.map((l) => (
             <NavLink key={l.href} label={l.label} href={l.href} onClick={() => setOpen(false)} />
           ))}
+          <div className="mt-1 flex items-center justify-between border-t border-line px-3 pt-2 dark:border-[#262626]">
+            <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Language</span>
+            <LangToggle />
+          </div>
           <div className="mt-1 flex items-center justify-between border-t border-line px-3 pt-2 dark:border-[#262626]">
             <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Dark mode</span>
             <ThemeToggle />

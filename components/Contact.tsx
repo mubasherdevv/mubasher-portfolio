@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Reveal from "./Reveal";
 import { profile, timeSlots } from "@/lib/data";
+import { useLang } from "./LanguageContext";
 
 function firstAvailableDay(year: number, month: number): number | null {
   const today = new Date();
@@ -16,6 +17,7 @@ function firstAvailableDay(year: number, month: number): number | null {
 }
 
 export default function Contact() {
+  const { lang } = useLang();
   const [tab, setTab] = useState<"call" | "message">("call");
   const now = useMemo(() => new Date(), []);
   const [view, setView] = useState({ y: now.getFullYear(), m: now.getMonth() });
@@ -94,7 +96,7 @@ export default function Contact() {
                 </a>
               </p>
               <p className="mt-2 text-sm text-white/80">
-                {profile.location} · {profile.timezone}
+                {lang === "ur" ? profile.location : profile.locationEn} · {profile.timezone}
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <a
@@ -206,7 +208,7 @@ export default function Contact() {
                             This site has no booking backend — confirming here just prepares your email. Send it to lock the time in.
                           </p>
                           <a href={mailtoCall} className="mt-3 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-bold text-ink">
-                            Email <span className="font-urdu">محمد مبشر</span> to book →
+                            Email {lang === "ur" ? <span className="font-urdu">محمد مبشر</span> : "Muhammad Mubasher"} to book →
                           </a>
                         </div>
                       )}
