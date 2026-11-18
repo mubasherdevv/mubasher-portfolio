@@ -92,8 +92,8 @@ export const experience = [
     role: "Off-Page SEO",
     company: "Red Vision LLC",
     date: "", // CV lists no dates for this role — leave blank rather than inventing them
-    type: "Full time",
-    location: "Remote",
+    type: "Part time",
+    location: "In Office",
     description:
       "Link building, guest posting, blogger outreach, business listings and citations — white-hat SEO. Additional website work: WordPress, HTML, CSS, JavaScript, responsive layouts and website maintenance.",
     initials: "RV",
