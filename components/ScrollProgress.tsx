@@ -41,7 +41,7 @@ export default function ScrollProgress() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed bottom-6 right-6 z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-neutral-200 bg-white text-ink shadow-lg transition hover:bg-neutral-100 dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[#f5f5f5] dark:hover:bg-[#262626]"
+            className="fixed bottom-6 right-6 z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-neutral-200 bg-white text-ink shadow-lg transition hover:bg-neutral-100 dark:border-[#ff6b00] dark:bg-[#ff6b00] dark:text-white dark:hover:bg-orange-600"
           >
             <FiArrowUp size={18} />
           </motion.button>

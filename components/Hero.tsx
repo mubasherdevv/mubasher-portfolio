@@ -56,7 +56,7 @@ export default function Hero() {
           {...fade(0.3)}
           className="mx-auto mt-6 max-w-[700px] text-[52px] font-bold leading-[1.05] tracking-tight text-[#111] dark:text-[#f5f5f5] sm:text-[56px]"
         >
-          I&apos;m a Full-Stack Developer and Agentic AI Developer.
+          I&apos;m a Full-Stack Developer and <span className="dark:text-[#ff6b00]">Agentic AI Developer.</span>
         </motion.h1>
 
         <motion.p {...fade(0.45)} className="mx-auto mt-5 max-w-[560px] text-[17px] leading-relaxed text-[#666] dark:text-[#a3a3a3]">

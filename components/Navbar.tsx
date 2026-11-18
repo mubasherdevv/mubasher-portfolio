@@ -20,7 +20,7 @@ function NavLink({ label, href, onClick }: { label: string; href: string; onClic
     >
       {/* doubled-label rollover */}
       <span className="block whitespace-nowrap transition-transform duration-300 group-hover:-translate-y-[110%]">{label}</span>
-      <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center whitespace-nowrap px-3 transition-transform duration-300 group-hover:translate-y-0 translate-y-[110%] text-ink dark:text-[#f5f5f5]">
+      <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center whitespace-nowrap px-3 transition-transform duration-300 group-hover:translate-y-0 translate-y-[110%] text-ink dark:text-[#ff6b00]">
         {label}
       </span>
     </a>
@@ -55,7 +55,7 @@ function ThemeToggle() {
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-ink transition hover:bg-neutral-100 dark:text-[#f5f5f5] dark:hover:bg-[#262626]"
     >
-      {dark ? <FiSun size={18} /> : <FiMoon size={18} />}
+      {dark ? <FiSun size={18} className="text-[#ff6b00]" /> : <FiMoon size={18} />}
     </button>
   );
 }

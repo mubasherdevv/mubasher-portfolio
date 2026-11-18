@@ -28,7 +28,7 @@ export default function Reveal({
 
 export function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3.5 py-1.5 text-[13px] font-medium text-neutral-700 shadow-sm">
+    <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3.5 py-1.5 text-[13px] font-medium text-neutral-700 shadow-sm dark:border-[#262626] dark:bg-[#161616] dark:text-[#ff6b00]">
       <span className="h-2.5 w-2.5 rounded-[2px] bg-[#ff6b00]" />
       {children}
     </span>
@@ -53,7 +53,7 @@ export function SectionHeading({
         align === "center" ? "text-center" : "text-left"
       }`}
     >
-      {dark} <span className="text-[#cfcfcf]">{pale}</span>
+      {dark} <span className="text-[#cfcfcf] dark:text-[#ff6b00]">{pale}</span>
     </h2>
   );
 }

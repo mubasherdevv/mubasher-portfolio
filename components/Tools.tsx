@@ -30,7 +30,7 @@ function ToolTile({ Icon, color, darkColor, name }: { Icon: IconType; color: str
   return (
     <span
       title={name}
-      className="flex h-[54px] w-[54px] items-center justify-center rounded-2xl border border-line bg-white text-[var(--ic)] shadow-[0_8px_24px_rgba(0,0,0,0.07)] dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[var(--ic-dark)]"
+      className="flex h-[54px] w-[54px] items-center justify-center rounded-2xl border border-line bg-white text-[var(--ic)] shadow-[0_8px_24px_rgba(0,0,0,0.07)] transition dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[var(--ic-dark)] dark:hover:border-orange-500/50 dark:hover:shadow-[0_8px_24px_rgba(255,107,0,0.15)]"
       style={{ "--ic": color, "--ic-dark": darkColor ?? color } as CSSProperties}
     >
       <Icon size={32} />
@@ -64,7 +64,7 @@ export default function Tools() {
             <h2 className="text-4xl font-bold leading-[1.08] tracking-tight text-ink dark:text-[#f5f5f5] sm:text-5xl">
               A Collection of Tools I Use
               <br />
-              to Bring <span className="text-[#cfcfcf] dark:text-[#555]">Ideas to Life</span>
+              to Bring <span className="text-[#cfcfcf] dark:text-[#ff6b00]">Ideas to Life</span>
             </h2>
             <p className="mt-4 text-[15px] text-[#666] dark:text-[#a3a3a3]">Designing &amp; Crafting — The Tools That Bring Ideas to Life</p>
           </Reveal>

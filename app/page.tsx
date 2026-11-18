@@ -44,14 +44,14 @@ export default function Home() {
           <p className="text-[40px] font-bold leading-tight tracking-tight">
             <span className="text-[#111] dark:text-[#f5f5f5]">Great things in Business</span>
             <br />
-            <span className="text-[#cfcfcf] dark:text-[#555]">are never done by one person.</span>
+            <span className="text-[#cfcfcf] dark:text-[#ff6b00]">are never done by one person.</span>
             <br />
             <span className="text-[#111] dark:text-[#f5f5f5]">They&apos;re done by a skilled</span>
             <br />
-            <span className="text-[#cfcfcf] dark:text-[#555]">Team of people.</span>
+            <span className="text-[#cfcfcf] dark:text-[#ff6b00]">Team of people.</span>
           </p>
           <p className="mt-4 text-sm font-medium text-neutral-500 dark:text-neutral-400">~ Steve Jobs</p>
-          <a href="#contact" className="mt-6 inline-block text-base font-bold text-ink underline dark:text-[#f5f5f5] decoration-[#ff6b00] decoration-2 underline-offset-8 hover:text-[#ff6b00]">
+          <a href="#contact" className="mt-6 inline-block text-base font-bold text-ink underline dark:text-[#ff6b00] decoration-[#ff6b00] decoration-2 underline-offset-8 hover:text-[#ff6b00]">
             Let&apos;s Collaborate --&gt;
           </a>
         </Reveal>

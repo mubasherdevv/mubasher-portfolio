@@ -105,7 +105,7 @@ export default async function GitHubStats() {
       <Reveal>
         <SectionLabel>GitHub</SectionLabel>
         <h2 className="mt-4 text-4xl font-bold leading-[1.08] tracking-tight text-ink dark:text-[#f5f5f5] sm:text-5xl">
-          Code, <span className="text-[#cfcfcf] dark:text-[#555]">in public</span>
+          Code, <span className="text-[#cfcfcf] dark:text-[#ff6b00]">in public</span>
         </h2>
         <p className="mt-3 max-w-[560px] text-[16px] leading-relaxed text-[#666] dark:text-[#a3a3a3]">
           Everything I build lands on GitHub — open source, experiments and client work.
@@ -136,11 +136,11 @@ export default async function GitHubStats() {
 
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
             <div className="rounded-[16px] bg-[#f7f7f7] p-5 dark:bg-[#1a1a1a]">
-              <p className="text-[36px] font-bold leading-none text-ink dark:text-[#f5f5f5]">{stats.repos}</p>
+              <p className="text-[36px] font-bold leading-none text-ink dark:text-[#ff6b00]">{stats.repos}</p>
               <p className="mt-2 text-sm font-medium text-[#666] dark:text-[#a3a3a3]">Public repositories</p>
             </div>
             <div className="rounded-[16px] bg-[#f7f7f7] p-5 dark:bg-[#1a1a1a]">
-              <p className="text-[36px] font-bold leading-none text-ink dark:text-[#f5f5f5]">{stats.stars}</p>
+              <p className="text-[36px] font-bold leading-none text-ink dark:text-[#ff6b00]">{stats.stars}</p>
               <p className="mt-2 text-sm font-medium text-[#666] dark:text-[#a3a3a3]">Stars earned</p>
             </div>
             <div className="col-span-2 rounded-[16px] bg-[#f7f7f7] p-5 dark:bg-[#1a1a1a] sm:col-span-1">
@@ -168,7 +168,7 @@ export default async function GitHubStats() {
                 <p className="mt-1 text-sm text-[#666] dark:text-[#a3a3a3]">Public commits and pull requests, last 12 months.</p>
               </div>
               <div className="text-right">
-                <p className="text-[28px] font-bold leading-none text-ink dark:text-[#f5f5f5]">{stats.contributions.toLocaleString()}</p>
+                <p className="text-[28px] font-bold leading-none text-ink dark:text-[#ff6b00]">{stats.contributions.toLocaleString()}</p>
                 <p className="mt-1 text-sm font-medium text-[#666] dark:text-[#a3a3a3]">total contributions (last year)</p>
                 <p className="mt-0.5 text-xs text-[#999]">including {stats.commits.toLocaleString()} commits</p>
               </div>

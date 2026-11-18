@@ -18,7 +18,7 @@ function ProjectCard({ p }: { p: (typeof projects)[number] }) {
   return (
     <div
       ref={ref}
-      className="view-cursor group flex h-full flex-col overflow-hidden rounded-[24px] border border-line bg-white shadow-sm transition hover:shadow-xl dark:border-[#262626] dark:bg-[#161616]"
+      className="view-cursor group flex h-full flex-col overflow-hidden rounded-[24px] border border-line bg-white shadow-sm transition hover:shadow-xl dark:border-[#262626] dark:bg-[#161616] dark:hover:border-orange-500/50 dark:hover:shadow-[0_20px_50px_rgba(255,107,0,0.12)]"
       onMouseEnter={() => {
         setHover(true);
         setCursorView(true);
@@ -86,7 +86,7 @@ export default function Projects() {
         ))}
       </div>
       <Reveal className="mt-10 text-center">
-        <a href="#contact" className="text-[15px] font-semibold text-ink underline decoration-[#ff6b00] dark:text-[#f5f5f5] decoration-2 underline-offset-8 hover:text-[#ff6b00]">
+        <a href="#contact" className="text-[15px] font-semibold text-ink underline decoration-[#ff6b00] dark:text-[#ff6b00] decoration-2 underline-offset-8 hover:text-[#ff6b00]">
           View all projects →
         </a>
       </Reveal>

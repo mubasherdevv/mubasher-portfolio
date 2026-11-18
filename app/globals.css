@@ -32,6 +32,24 @@ section[id] {
   color: #fff;
 }
 
+/* Dark-mode scrollbar: dark grey thumb, orange on hover. */
+.dark {
+  scrollbar-color: #262626 #0a0a0a;
+}
+.dark ::-webkit-scrollbar {
+  width: 10px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 8px;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #ff6b00;
+}
+
 /* Dotted Figma-canvas background — preloader only (hero has none). */
 .dot-grid {
   background-image: radial-gradient(#d4d4d4 1.2px, transparent 1.2px);
@@ -66,17 +84,18 @@ section[id] {
   font-family: var(--font-urdu), "Noto Nastaliq Urdu", serif;
 }
 
-/* Giant footer wordmark — letters fade to white, never sliced */
+/* Giant footer wordmark — solid brand orange in BOTH modes with a subtle
+   glow (owner's call: the old pale gradient-clip was invisible on white and
+   unreadable on dark). No background-clip — plain coloured text. */
 .wordmark {
-  background: linear-gradient(180deg, #d6d6d6 0%, #e9e9e9 55%, #ffffff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #ff6b00;
   line-height: 0.78;
+  text-shadow: 0 0 18px rgba(255, 107, 0, 0.18);
 }
 
 .dark .wordmark {
-  background: linear-gradient(180deg, #3d3d3d 0%, #232323 55%, #0a0a0a 100%);
+  color: #ff6b00;
+  text-shadow: 0 0 24px rgba(255, 107, 0, 0.28);
 }
 
 /* Urdu wordmark needs Nastaliq's tall line-height or glyphs clip */

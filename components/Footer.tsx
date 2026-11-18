@@ -12,7 +12,7 @@ export default function Footer() {
               <p className="text-[20px] font-bold leading-snug text-ink dark:text-[#f5f5f5]">
                 Do You have any questions? Feel free to email me
               </p>
-              <a href={`mailto:${profile.email}`} className="mt-2 inline-block text-[15px] font-medium text-neutral-600 underline underline-offset-4 hover:text-ink dark:text-neutral-400 dark:hover:text-[#f5f5f5]">
+              <a href={`mailto:${profile.email}`} className="mt-2 inline-block text-[15px] font-medium text-neutral-600 underline underline-offset-4 hover:text-ink dark:text-neutral-400 dark:hover:text-[#ff6b00]">
                 {profile.email}
               </a>
               <div className="mt-5 flex gap-3">
@@ -21,7 +21,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 bg-white text-[13px] font-extrabold text-ink transition hover:border-ink dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[#f5f5f5] dark:hover:border-[#555]"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 bg-white text-[13px] font-extrabold text-ink transition hover:border-ink dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[#f5f5f5] dark:hover:border-[#ff6b00] dark:hover:text-[#ff6b00]"
                 >
                   in
                 </a>
@@ -30,7 +30,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 bg-white text-ink transition hover:border-ink dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[#f5f5f5] dark:hover:border-[#555]"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 bg-white text-ink transition hover:border-ink dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[#f5f5f5] dark:hover:border-[#ff6b00] dark:hover:text-[#ff6b00]"
                 >
                   <SiGithub size={18} />
                 </a>
@@ -39,7 +39,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="YouTube"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 bg-white text-ink transition hover:border-ink dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[#f5f5f5] dark:hover:border-[#555]"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 bg-white text-ink transition hover:border-ink dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[#f5f5f5] dark:hover:border-[#ff6b00] dark:hover:text-[#ff6b00]"
                 >
                   <SiYoutube size={18} />
                 </a>
@@ -47,7 +47,7 @@ export default function Footer() {
             </div>
             <div className="text-left md:text-right">
               <p className="text-[16px] font-bold text-ink dark:text-[#f5f5f5]">Contact me</p>
-              <a href={profile.phoneHref} className="mt-1 block text-[15px] text-neutral-600 hover:text-ink dark:text-neutral-400 dark:hover:text-[#f5f5f5]">
+              <a href={profile.phoneHref} className="mt-1 block text-[15px] text-neutral-600 hover:text-ink dark:text-neutral-400 dark:hover:text-[#ff6b00]">
                 {profile.phone}
               </a>
               <p className="mt-4 text-[16px] font-bold text-ink dark:text-[#f5f5f5]">Location</p>

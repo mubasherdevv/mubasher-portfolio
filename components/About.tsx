@@ -26,7 +26,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
   }, [inView, value]);
 
   return (
-    <span ref={ref} className="text-[38px] font-bold text-ink dark:text-[#f5f5f5]">
+    <span ref={ref} className="text-[38px] font-bold text-ink dark:text-[#ff6b00]">
       {n}
       {suffix}
     </span>
@@ -37,7 +37,7 @@ export default function About() {
   return (
     <section id="about" className="mx-auto max-w-[1180px] px-4 py-24">
       <Reveal className="text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3.5 py-1.5 text-[13px] font-medium text-neutral-700 shadow-sm dark:border-[#262626] dark:bg-[#161616] dark:text-neutral-300">
+        <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3.5 py-1.5 text-[13px] font-medium text-neutral-700 shadow-sm dark:border-[#262626] dark:bg-[#161616] dark:text-[#ff6b00]">
           <span className="h-2.5 w-2.5 rounded-[2px] bg-[#ff6b00]" />
           About me
         </span>
@@ -45,7 +45,7 @@ export default function About() {
       <Reveal className="mt-5">
         <h2 className="mx-auto max-w-3xl text-center text-[36px] font-bold leading-[1.1] tracking-tight sm:text-[40px]">
           <span className="text-[#111] dark:text-[#f5f5f5]">Building web apps &amp; AI workflows that</span>{" "}
-          <span className="text-[#cfcfcf] dark:text-[#555]">solve real problems</span>
+          <span className="text-[#cfcfcf] dark:text-[#ff6b00]">solve real problems</span>
         </h2>
       </Reveal>
 

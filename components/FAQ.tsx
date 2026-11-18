@@ -12,7 +12,7 @@ export default function FAQ() {
       <div className="grid gap-12 md:grid-cols-5">
         <Reveal className="md:col-span-2">
           <h2 className="text-[36px] font-bold leading-[1.1] tracking-tight text-[#111] dark:text-[#f5f5f5] sm:text-[40px]">
-            Frequently Asked <span className="text-[#cfcfcf] dark:text-[#555]">Questions</span>
+            Frequently Asked <span className="text-[#cfcfcf] dark:text-[#ff6b00]">Questions</span>
           </h2>
           <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-[#666] dark:text-[#a3a3a3]">
             Answers to common questions about my work, process and services.
@@ -26,7 +26,7 @@ export default function FAQ() {
             const isOpen = open === i;
             return (
               <Reveal key={f.q} delay={i * 0.05}>
-                <div className={`rounded-2xl border bg-white transition dark:bg-[#161616] ${isOpen ? "border-neutral-300 shadow-sm dark:border-[#404040]" : "border-line dark:border-[#262626]"}`}>
+                <div className={`rounded-2xl border bg-white transition dark:bg-[#161616] dark:hover:border-orange-500/40 ${isOpen ? "border-neutral-300 shadow-sm dark:border-[#404040]" : "border-line dark:border-[#262626]"}`}>
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"

@@ -12,13 +12,13 @@ export default function Services() {
         <h2 className="text-[40px] font-bold leading-[1.1] tracking-tight text-[#111] dark:text-[#f5f5f5]">
           The Right Skills, in One Place to
           <br />
-          Build <span className="text-[#cfcfcf] dark:text-[#555]">What You Need</span>
+          Build <span className="text-[#cfcfcf] dark:text-[#ff6b00]">What You Need</span>
         </h2>
       </Reveal>
       <div className="mt-12 grid gap-6 md:grid-cols-3">
         {services.map((s, i) => (
           <Reveal key={s.title} delay={i * 0.08} className="h-full">
-            <div className="flex h-full flex-col overflow-hidden rounded-[24px] border border-line bg-white shadow-sm transition hover:shadow-lg dark:border-[#262626] dark:bg-[#161616]">
+            <div className="flex h-full flex-col overflow-hidden rounded-[24px] border border-line bg-white shadow-sm transition hover:shadow-lg dark:border-[#262626] dark:bg-[#161616] dark:hover:border-orange-500/40 dark:hover:shadow-[0_16px_40px_rgba(255,107,0,0.10)]">
               <div className="flex h-[300px] items-center justify-center bg-[#f3f3f3] p-6 dark:bg-[#1a1a1a]">
                 <div className="w-full max-w-[300px]">
                   <Mockup kind={s.mock} lines={s.mockLines} />

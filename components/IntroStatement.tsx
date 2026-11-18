@@ -105,7 +105,14 @@ export default function IntroStatement() {
           <p className="relative z-10 mx-auto max-w-[900px] text-[36px] font-bold leading-[1.2] tracking-tight sm:text-[40px]">
             {tokens.map((t, i) =>
               t.kind === "word" ? (
-                <ScrubWord key={i} progress={scrollYProgress} idx={t.idx} colors={scrubColors}>
+                <ScrubWord
+                  key={i}
+                  progress={scrollYProgress}
+                  idx={t.idx}
+                  // Last word ("product.") finishes in orange in dark mode —
+                  // the sentence lands on the brand colour. Light mode unchanged.
+                  colors={t.idx === WORD_COUNT - 1 && dark ? ["#404040", "#ff6b00"] : scrubColors}
+                >
                   {t.text}
                 </ScrubWord>
               ) : t.kind === "yellow" ? (

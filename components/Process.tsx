@@ -10,8 +10,8 @@ export default function Process() {
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
         {processSteps.map((s, i) => (
           <Reveal key={s.n} delay={i * 0.08} className={`h-full lg:col-span-2 ${i === 3 ? "lg:col-start-2" : ""}`}>
-            <div className="flex h-[260px] flex-col justify-between rounded-[20px] border border-line bg-white p-6 shadow-sm dark:border-[#262626] dark:bg-[#161616]">
-              <span className="text-[48px] font-bold leading-none text-[#ddd] dark:text-[#333]">{s.n}</span>
+            <div className="flex h-[260px] flex-col justify-between rounded-[20px] border border-line bg-white p-6 shadow-sm transition dark:border-[#262626] dark:bg-[#161616] dark:hover:border-orange-500/40 dark:hover:shadow-[0_16px_40px_rgba(255,107,0,0.10)]">
+              <span className="text-[48px] font-bold leading-none text-[#ddd] dark:text-[#ff6b00]/30">{s.n}</span>
               <div>
                 <h3 className="text-[17px] font-bold text-ink dark:text-[#f5f5f5]">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-[#666] dark:text-[#a3a3a3]">{s.text}</p>
