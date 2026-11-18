@@ -12,7 +12,7 @@ export default function FAQ() {
       <div className="grid gap-12 md:grid-cols-5">
         <Reveal className="md:col-span-2">
           <h2 className="text-[36px] font-bold leading-[1.1] tracking-tight text-[#111] sm:text-[40px]">
-            Frequent Asked <span className="text-[#cfcfcf]">Questions</span>
+            Frequently Asked <span className="text-[#cfcfcf]">Questions</span>
           </h2>
           <p className="mt-4 max-w-xs text-[15px] leading-relaxed text-[#666]">
             Answers to common questions about my work, process and services.

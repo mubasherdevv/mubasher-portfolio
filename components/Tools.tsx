@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Reveal, { SectionHeading } from "./Reveal";
+import Reveal from "./Reveal";
 import {
   SiGithub, SiJavascript, SiNextdotjs, SiNodedotjs, SiReact,
   SiSupabase, SiTailwindcss, SiTypescript,
@@ -10,9 +10,10 @@ import type { IconType } from "react-icons";
 
 /**
  * Tools — Twambi layout: 8 colourful brand icons in 4 pairs FLANKING the
- * centred heading (not a grid below it). Row 1 above the heading (inset),
- * row 2 level with the heading (far edges), row 3 below the subtitle
- * (far edges), row 4 at the bottom (inset). ~150px between rows.
+ * centred heading (not a grid below it). Compact field (~480px tall):
+ * row 1 above the heading (inset ~24%), row 2 level with the heading
+ * (inset ~8%), row 3 below the subtitle (inset ~8%), row 4 at the bottom
+ * (inset ~24%). Heading is two lines exactly like Twambi's.
  * Icons fade+rise per row (top first), then stay completely static.
  */
 const rows: { left: { Icon: IconType; color: string; name: string }; right: { Icon: IconType; color: string; name: string }; inset: boolean }[] = [
@@ -26,21 +27,21 @@ function ToolTile({ Icon, color, name }: { Icon: IconType; color: string; name: 
   return (
     <span
       title={name}
-      className="flex h-[58px] w-[58px] items-center justify-center rounded-2xl border border-line bg-white shadow-[0_8px_24px_rgba(0,0,0,0.07)]"
+      className="flex h-[54px] w-[54px] items-center justify-center rounded-2xl border border-line bg-white shadow-[0_8px_24px_rgba(0,0,0,0.07)]"
     >
-      <Icon size={34} color={color} />
+      <Icon size={32} color={color} />
     </span>
   );
 }
 
 export default function Tools() {
   return (
-    <section className="relative mx-auto max-w-[1180px] px-4 py-24">
-      <div className="relative mx-auto flex h-[660px] flex-col justify-between">
+    <section className="relative mx-auto max-w-[1180px] px-4 py-20">
+      <div className="relative mx-auto flex h-[480px] flex-col justify-between">
         {rows.map((row, i) => (
           <motion.div
             key={i}
-            className={`flex items-center justify-between ${row.inset ? "px-[16%]" : "px-0"}`}
+            className={`flex items-center justify-between ${row.inset ? "px-[24%]" : "px-[8%]"}`}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
@@ -51,10 +52,16 @@ export default function Tools() {
           </motion.div>
         ))}
 
-        {/* Heading + subtitle centred in the middle of the icon field */}
+        {/* Heading + subtitle centred in the middle of the icon field.
+            Two lines exactly like Twambi's: "A Collection of Tools I Use" /
+            "to Bring Ideas to Life" (only "Ideas to Life" pale). */}
         <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
           <Reveal>
-            <SectionHeading dark="A Collection of Tools I Use to" pale="Bring Ideas to Life" />
+            <h2 className="text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl">
+              A Collection of Tools I Use
+              <br />
+              to Bring <span className="text-[#cfcfcf]">Ideas to Life</span>
+            </h2>
             <p className="mt-4 text-[15px] text-[#666]">Designing &amp; Crafting — The Tools That Bring Ideas to Life</p>
           </Reveal>
         </div>

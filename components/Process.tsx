@@ -7,9 +7,9 @@ export default function Process() {
       <Reveal>
         <SectionLabel>Process</SectionLabel>
       </Reveal>
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
         {processSteps.map((s, i) => (
-          <Reveal key={s.n} delay={i * 0.08} className="h-full">
+          <Reveal key={s.n} delay={i * 0.08} className={`h-full lg:col-span-2 ${i === 3 ? "lg:col-start-2" : ""}`}>
             <div className="flex h-[260px] flex-col justify-between rounded-[20px] border border-line bg-white p-6 shadow-sm">
               <span className="text-[48px] font-bold leading-none text-[#ddd]">{s.n}</span>
               <div>
