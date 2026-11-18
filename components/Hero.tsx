@@ -1,8 +1,25 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { profile, projects } from "@/lib/data";
 import Mockup from "./Mockup";
+import FluxLines from "./FluxLines";
+
+/** Reads the "dark" class on <html> (set by the theme script / toggle) and
+    stays in sync when it changes, so the FluxLines colours flip with the theme. */
+function useIsDark() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const el = document.documentElement;
+    const update = () => setDark(el.classList.contains("dark"));
+    update();
+    const obs = new MutationObserver(update);
+    obs.observe(el, { attributes: true, attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
+  return dark;
+}
 
 const fade = (delay: number) => ({
   initial: { opacity: 0, y: 24, filter: "blur(4px)" },
@@ -36,9 +53,26 @@ function FloatPill({
 }
 
 export default function Hero() {
+  const dark = useIsDark();
   return (
     <section id="home" className="relative overflow-hidden pb-10 pt-32 sm:pt-36">
-      <div className="relative mx-auto max-w-[1180px] px-4 text-center">
+      {/* FluxLines (React Bits) — fluid WebGL lines behind the hero content.
+          pointer-events-none: mouse/click interaction still works because the
+          component listens on window. Colours flip with the theme. */}
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+        <FluxLines
+          colors={dark ? ["#ffffff", "#ff6b00", "#ffffff"] : ["#111111", "#ff6b00", "#111111"]}
+          lightMode={!dark}
+          glow={2}
+          rimWidth={0.2}
+          lineWidth={1}
+          flowDirection="down"
+          opacity={dark ? 0.6 : 0.5}
+          mouseInteraction
+          clickSwirl
+        />
+      </div>
+      <div className="relative z-10 mx-auto max-w-[1180px] px-4 text-center">
         {/* Monogram avatar (pure CSS — no photo) + "محمد مبشر" pill */}
         <motion.div {...fade(0.1)} className="relative mx-auto h-[100px] w-[100px]">
           <div className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-gradient-to-br from-[#ff6b00] via-[#f43f5e] to-[#7c3aed] text-[44px] font-extrabold text-white shadow-lg ring-4 ring-white dark:ring-[#161616]">
@@ -91,7 +125,7 @@ export default function Hero() {
       </div>
 
       {/* Hero project marquee — very slow drift, large cards */}
-      <motion.div {...fade(0.65)} className="fade-x mt-16 overflow-hidden">
+      <motion.div {...fade(0.65)} className="fade-x relative z-10 mt-16 overflow-hidden">
         <div className="flex w-max animate-marquee-slow gap-6 pr-6 hover:[animation-play-state:paused]">
           {marqueeCards.map((p, i) => (
             <div
