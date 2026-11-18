@@ -54,22 +54,22 @@ export default function About() {
       <div className="mt-12 grid items-start gap-10 md:grid-cols-2">
         {/* Portrait — pure CSS gradient panel + monogram, NO photo */}
         <Reveal>
-          <div className="relative flex h-[470px] items-center justify-center overflow-hidden rounded-2xl bg-[#f5f5f5] dark:bg-[#161616]">
+          <div className="relative mx-auto flex h-[320px] w-full max-w-[320px] items-center justify-center overflow-hidden rounded-2xl bg-[#f5f5f5] dark:bg-[#161616] sm:h-[470px] sm:max-w-none">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#dbeafe,transparent_55%),radial-gradient(circle_at_75%_80%,#fed7aa,transparent_55%)]" />
-            <span className="relative flex h-56 w-56 items-center justify-center rounded-full bg-gradient-to-br from-[#ff6b00] via-[#f43f5e] to-[#7c3aed] text-[110px] font-extrabold text-white shadow-xl">
+            <span className="relative flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-br from-[#ff6b00] via-[#f43f5e] to-[#7c3aed] text-[72px] font-extrabold text-white shadow-xl sm:h-56 sm:w-56 sm:text-[110px]">
               M
             </span>
-            <span className="absolute left-5 top-5 flex h-12 w-12 rotate-[-6deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400">
-              <SiReact size={22} />
+            <span className="absolute left-5 top-5 flex h-9 w-9 rotate-[-6deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400 sm:h-12 sm:w-12">
+              <SiReact className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" />
             </span>
-            <span className="absolute right-5 top-8 flex h-12 w-12 rotate-[7deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400">
-              <SiNextdotjs size={22} />
+            <span className="absolute right-5 top-8 flex h-9 w-9 rotate-[7deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400 sm:h-12 sm:w-12">
+              <SiNextdotjs className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" />
             </span>
-            <span className="absolute bottom-6 left-8 flex h-12 w-12 rotate-[5deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400">
-              <SiN8N size={22} />
+            <span className="absolute bottom-6 left-8 flex h-9 w-9 rotate-[5deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400 sm:h-12 sm:w-12">
+              <SiN8N className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" />
             </span>
-            <span className="absolute bottom-10 right-8 flex h-12 w-12 rotate-[-8deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400">
-              <SiSupabase size={22} />
+            <span className="absolute bottom-10 right-8 flex h-9 w-9 rotate-[-8deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400 sm:h-12 sm:w-12">
+              <SiSupabase className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" />
             </span>
             <span className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-2 text-sm font-bold text-ink shadow dark:bg-[#1a1a1a] dark:text-[#f5f5f5]">
               {lang === "ur" ? <span className="font-urdu">{profile.name}</span> : profile.nameEn}

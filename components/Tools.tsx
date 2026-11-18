@@ -30,10 +30,10 @@ function ToolTile({ Icon, color, darkColor, name }: { Icon: IconType; color: str
   return (
     <span
       title={name}
-      className="flex h-11 w-11 items-center justify-center rounded-2xl border border-line bg-white text-[var(--ic)] shadow-[0_8px_24px_rgba(0,0,0,0.07)] transition dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[var(--ic-dark)] dark:hover:border-orange-500/50 dark:hover:shadow-[0_8px_24px_rgba(255,107,0,0.15)] sm:h-[54px] sm:w-[54px]"
+      className="flex h-11 w-11 items-center justify-center rounded-2xl border border-line bg-white text-[var(--ic)] shadow-[0_8px_24px_rgba(0,0,0,0.07)] transition dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[var(--ic-dark)] dark:hover:border-orange-500/50 dark:hover:shadow-[0_8px_24px_rgba(255,107,0,0.15)] lg:h-[54px] lg:w-[54px]"
       style={{ "--ic": color, "--ic-dark": darkColor ?? color } as CSSProperties}
     >
-      <Icon size={32} className="h-7 w-7 sm:h-8 sm:w-8" />
+      <Icon size={32} className="h-7 w-7 lg:h-8 lg:w-8" />
     </span>
   );
 }
@@ -41,10 +41,10 @@ function ToolTile({ Icon, color, darkColor, name }: { Icon: IconType; color: str
 export default function Tools() {
   return (
     <section className="relative mx-auto max-w-[1180px] px-4 py-20">
-      {/* Mobile: heading sits ABOVE the icons in normal flow (the desktop
-          overlay would collide with the flanking icons below ~700px wide).
-          sm+ keeps the exact Twambi overlay. */}
-      <div className="relative mx-auto flex flex-col justify-between gap-6 sm:h-[480px] sm:gap-0">
+      {/* Below lg: heading sits ABOVE the icons in normal flow (the
+          overlay would collide with the flanking icons below ~1024px wide).
+          lg+ keeps the exact Twambi overlay. */}
+      <div className="relative mx-auto flex flex-col justify-between gap-6 lg:h-[480px] lg:gap-0">
         {rows.map((row, i) => (
           <motion.div
             key={i}
@@ -62,9 +62,9 @@ export default function Tools() {
         {/* Heading + subtitle centred in the middle of the icon field.
             Two lines exactly like Twambi's: "A Collection of Tools I Use" /
             "to Bring Ideas to Life" (only "Ideas to Life" pale). */}
-        <div className="pointer-events-none static order-first flex flex-col items-center justify-center text-center sm:absolute sm:inset-0 sm:order-none">
+        <div className="pointer-events-none static order-first flex flex-col items-center justify-center text-center lg:absolute lg:inset-0 lg:order-none">
           <Reveal>
-            <h2 className="text-[26px] font-bold leading-[1.15] tracking-tight text-ink dark:text-[#f5f5f5] sm:text-4xl lg:text-5xl lg:leading-[1.08]">
+            <h2 className="text-[26px] font-bold leading-[1.15] tracking-tight text-ink dark:text-[#f5f5f5] md:text-4xl lg:text-5xl lg:leading-[1.08]">
               A Collection of Tools I Use
               <br />
               to Bring <span className="text-[#cfcfcf] dark:text-[#ff6b00]">Ideas to Life</span>

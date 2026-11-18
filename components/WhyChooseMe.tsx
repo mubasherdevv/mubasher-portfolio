@@ -55,7 +55,7 @@ export default function WhyChooseMe() {
       <div className="mt-12 grid gap-5 md:grid-cols-3">
         {/* Popular Services — 5×2 icon grid */}
         <Reveal delay={0} className="h-full">
-          <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm transition dark:border-[#262626] dark:bg-[#161616] dark:hover:border-orange-500/40 dark:hover:shadow-[0_16px_40px_rgba(255,107,0,0.10)]">
+          <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm transition dark:border-[#262626] dark:bg-[#161616] dark:hover:border-orange-500/40 dark:hover:shadow-[0_16px_40px_rgba(255,107,0,0.10)] md:h-full lg:h-[270px]">
             <h3 className="text-[17px] font-bold text-ink dark:text-[#f5f5f5]">Popular Services</h3>
             <p className="mt-1 text-sm text-[#666] dark:text-[#a3a3a3]">End-to-end web development and AI workflow automation.</p>
             <div className="mt-5 grid grid-cols-4 gap-2">
@@ -75,7 +75,7 @@ export default function WhyChooseMe() {
 
         {/* Robust products — black card, iridescent lightning */}
         <Reveal delay={0.05} className="h-full">
-          <div className="relative flex h-[270px] flex-col overflow-hidden rounded-[24px] bg-neutral-900 p-6 text-white shadow-sm">
+          <div className="relative flex h-[270px] flex-col overflow-hidden rounded-[24px] bg-neutral-900 p-6 text-white shadow-sm md:h-full lg:h-[270px]">
             <h3 className="text-[17px] font-bold">Robust products</h3>
             <p className="mt-1 text-sm text-neutral-400">Clean, maintainable code — built to keep working, not just to launch.</p>
             <svg viewBox="0 0 200 120" className="mt-auto w-full" aria-hidden="true">
@@ -94,7 +94,7 @@ export default function WhyChooseMe() {
 
         {/* Vast Knowledge — scattered rotated pills, fully inside */}
         <Reveal delay={0.1} className="h-full">
-          <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm transition dark:border-[#262626] dark:bg-[#161616] dark:hover:border-orange-500/40 dark:hover:shadow-[0_16px_40px_rgba(255,107,0,0.10)]">
+          <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm transition dark:border-[#262626] dark:bg-[#161616] dark:hover:border-orange-500/40 dark:hover:shadow-[0_16px_40px_rgba(255,107,0,0.10)] md:h-full lg:h-[270px]">
             <h3 className="text-[17px] font-bold text-ink dark:text-[#f5f5f5]">Vast Knowledge</h3>
             <p className="mt-1 text-sm text-[#666] dark:text-[#a3a3a3]">Broad expertise across the stack — one person can carry a project end to end.</p>
             <div className="mt-5 flex flex-wrap gap-1.5 px-1">

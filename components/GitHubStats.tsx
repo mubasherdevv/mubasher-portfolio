@@ -173,13 +173,14 @@ export default async function GitHubStats() {
                 <p className="mt-0.5 text-xs text-[#999]">including {stats.commits.toLocaleString()} commits</p>
               </div>
             </div>
+            {/* Readable 720px graph with swipe-scroll below lg; full-width, no scroll, at lg+. */}
             <div className="mt-3 overflow-x-auto rounded-[16px] border border-line bg-white p-4 dark:border-[#262626] dark:bg-white">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://ghchart.rshah.org/219653/mubasherdevv"
                 alt="Muhammad Mubasher's GitHub contribution graph"
                 loading="lazy"
-                className="w-full min-w-0 sm:min-w-[720px]"
+                className="w-full min-w-[720px] lg:min-w-0"
               />
             </div>
           </div>

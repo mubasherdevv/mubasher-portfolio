@@ -29,11 +29,17 @@ export default function Mockup({
   if (kind === "flow") {
     return (
       <div className="mx-auto w-full max-w-[420px] rounded-2xl bg-white/95 p-4 shadow-xl">
-        <div className="flex items-center gap-2">
+        {/* At md widths (768–1023px) the 3-column Services grid squeezes
+            this panel to ~150px, so the horizontal chip row would clip the
+            "Action" chip. There the steps stack vertically (↓ arrows);
+            mobile (1 col) and lg+ are wide enough for the horizontal row. */}
+        <div className="flex items-center gap-2 md:flex-col md:items-start md:gap-1.5 lg:flex-row lg:items-center lg:gap-2">
           <span className="rounded-lg bg-violet-600 px-2.5 py-1.5 text-[11px] font-bold text-white">AI API</span>
-          <span className="text-neutral-400">→</span>
+          <span className="text-neutral-400 md:hidden lg:inline">→</span>
+          <span className="hidden text-neutral-400 md:inline lg:hidden">↓</span>
           <span className="rounded-lg bg-neutral-900 px-2.5 py-1.5 text-[11px] font-bold text-white">n8n</span>
-          <span className="text-neutral-400">→</span>
+          <span className="text-neutral-400 md:hidden lg:inline">→</span>
+          <span className="hidden text-neutral-400 md:inline lg:hidden">↓</span>
           <span className="rounded-lg bg-emerald-500 px-2.5 py-1.5 text-[11px] font-bold text-white">Action</span>
         </div>
         <p className="mt-3 text-[11px] font-semibold text-ink">{lines[0]}</p>
