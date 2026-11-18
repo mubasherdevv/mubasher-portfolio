@@ -9,7 +9,7 @@ export default function Services() {
         <SectionLabel>Services</SectionLabel>
       </Reveal>
       <Reveal className="mt-5 text-center">
-        <h2 className="text-[40px] font-bold leading-[1.1] tracking-tight text-[#111] dark:text-[#f5f5f5]">
+        <h2 className="text-[32px] font-bold leading-[1.1] tracking-tight text-[#111] dark:text-[#f5f5f5] sm:text-[40px]">
           The Right Skills, in One Place to
           <br />
           Build <span className="text-[#cfcfcf] dark:text-[#ff6b00]">What You Need</span>

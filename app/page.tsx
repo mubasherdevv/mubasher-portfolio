@@ -43,7 +43,7 @@ export default function Home() {
       {/* Quote — static alternating two-tone: lines 1 & 3 black, 2 & 4 pale */}
       <section className="mx-auto max-w-4xl px-4 py-16 text-center">
         <Reveal>
-          <p className="text-[40px] font-bold leading-tight tracking-tight">
+          <p className="text-[28px] font-bold leading-tight tracking-tight sm:text-[40px]">
             <span className="text-[#111] dark:text-[#f5f5f5]">Great things in Business</span>
             <br />
             <span className="text-[#cfcfcf] dark:text-[#ff6b00]">are never done by one person.</span>

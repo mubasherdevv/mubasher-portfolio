@@ -179,7 +179,7 @@ export default async function GitHubStats() {
                 src="https://ghchart.rshah.org/219653/mubasherdevv"
                 alt="Muhammad Mubasher's GitHub contribution graph"
                 loading="lazy"
-                className="min-w-[720px] w-full"
+                className="w-full min-w-0 sm:min-w-[720px]"
               />
             </div>
           </div>

@@ -64,7 +64,7 @@ export default function Projects() {
         <div className="mt-5">
           <SectionHeading dark="Selected" pale="Work" />
         </div>
-        <div className="mx-auto mt-8 flex h-12 w-fit items-center gap-3 rounded-full bg-neutral-100 px-2 dark:bg-[#1a1a1a]">
+        <div className="mx-auto mt-8 flex h-auto min-h-12 w-fit max-w-full flex-wrap items-center justify-center gap-2 rounded-full bg-neutral-100 px-2 py-1.5 dark:bg-[#1a1a1a] sm:gap-3">
           {projectFilters.map((f) => (
             <button
               key={f}

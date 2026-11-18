@@ -90,7 +90,7 @@ export default function Hero() {
 
         <motion.h1
           {...fade(0.3)}
-          className="mx-auto mt-6 max-w-[700px] text-[52px] font-bold leading-[1.05] tracking-tight text-[#111] dark:text-[#f5f5f5] sm:text-[56px]"
+          className="mx-auto mt-6 max-w-[700px] text-[40px] font-bold leading-[1.05] tracking-tight text-[#111] dark:text-[#f5f5f5] sm:text-[56px]"
         >
           I&apos;m a Full-Stack Developer and <span className="dark:text-[#ff6b00]">Agentic AI Developer.</span>
         </motion.h1>
@@ -99,7 +99,7 @@ export default function Hero() {
           {profile.heroShort}
         </motion.p>
 
-        <motion.div {...fade(0.55)} className="relative mx-auto mt-9 flex flex-wrap items-center justify-center gap-4">
+        <motion.div {...fade(0.55)} className="relative mx-auto mt-9 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           {/* Handwritten note + curved arrow, left of the buttons */}
           <span className="pointer-events-none absolute -left-2 -top-12 hidden rotate-[-8deg] items-end gap-1 md:flex lg:left-6">
             <span className="font-hand text-[28px] font-semibold leading-none text-neutral-700 dark:text-neutral-300">Lets Chat!</span>
@@ -132,7 +132,7 @@ export default function Hero() {
           {marqueeCards.map((p, i) => (
             <div
               key={i}
-              className="flex h-[340px] w-[500px] shrink-0 flex-col justify-center rounded-[24px] p-8"
+              className="flex h-[280px] w-[320px] shrink-0 flex-col justify-center rounded-[24px] p-6 sm:h-[340px] sm:w-[500px] sm:p-8"
               style={{ backgroundColor: p.color }}
             >
               <Mockup kind={p.mock} lines={p.mockLines} />

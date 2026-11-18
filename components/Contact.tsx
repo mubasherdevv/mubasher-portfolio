@@ -70,7 +70,7 @@ export default function Contact() {
     <section id="contact" className="mx-auto max-w-[1180px] px-4 py-24">
       <Reveal>
         <div
-          className="relative overflow-hidden rounded-[32px] p-8 sm:p-12"
+          className="relative overflow-hidden rounded-[32px] p-5 sm:p-12"
           style={{
             background:
               "linear-gradient(180deg,#ef4444 0%,#f97316 28%,#ec4899 58%,#8b5cf6 82%,#7c3aed 100%)",
@@ -84,7 +84,7 @@ export default function Contact() {
           />
           <div className="relative grid gap-10 lg:grid-cols-2">
             <div className="text-white">
-              <h2 className="text-[48px] font-bold leading-[1.05] tracking-tight sm:text-[56px]">
+              <h2 className="text-[36px] font-bold leading-[1.05] tracking-tight sm:text-[56px]">
                 Let&apos;s start something great together.
               </h2>
               <p className="mt-5 max-w-md text-[16px] leading-relaxed text-white/85">
@@ -117,7 +117,7 @@ export default function Contact() {
             </div>
 
             {/* Booking card */}
-            <div className="rounded-[24px] bg-[#2b0a1e]/90 p-6 text-white shadow-2xl backdrop-blur">
+            <div className="rounded-[24px] bg-[#2b0a1e]/90 p-4 text-white shadow-2xl backdrop-blur sm:p-6">
               <div className="flex gap-2">
                 {(["call", "message"] as const).map((t) => (
                   <button

@@ -122,7 +122,7 @@ export default function Navbar() {
         </span>
       </nav>
       {open && (
-        <div className="absolute top-[72px] w-full max-w-[520px] rounded-3xl border border-line bg-white p-3 shadow-xl sm:hidden dark:border-[#262626] dark:bg-[#161616]">
+        <div className="absolute inset-x-4 top-[72px] rounded-3xl border border-line bg-white p-3 shadow-xl sm:hidden dark:border-[#262626] dark:bg-[#161616]">
           {links.map((l) => (
             <NavLink key={l.href} label={l.label} href={l.href} onClick={() => setOpen(false)} />
           ))}

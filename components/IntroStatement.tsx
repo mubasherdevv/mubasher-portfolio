@@ -102,7 +102,7 @@ export default function IntroStatement() {
             </div>
           ))}
 
-          <p className="relative z-10 mx-auto max-w-[900px] text-[36px] font-bold leading-[1.2] tracking-tight sm:text-[40px]">
+          <p className="relative z-10 mx-auto max-w-[900px] text-[32px] font-bold leading-[1.2] tracking-tight sm:text-[40px]">
             {tokens.map((t, i) =>
               t.kind === "word" ? (
                 <ScrubWord

@@ -19,7 +19,7 @@ const serviceIcons: { Icon: IconType; color: string; darkColor?: string; name: s
 
 function ClockArt() {
   return (
-    <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true" className="mt-4">
+    <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true" className="mt-4 shrink-0 self-center sm:self-start">
       <circle cx="60" cy="60" r="52" strokeWidth="2" className="fill-white stroke-[#e8e8e8] dark:fill-[#1a1a1a] dark:stroke-[#262626]" />
       {Array.from({ length: 12 }).map((_, i) => {
         const a = (i * 30 * Math.PI) / 180;
@@ -34,7 +34,7 @@ function ClockArt() {
 
 function CollabArt() {
   return (
-    <div className="mt-4 flex h-[120px] items-center justify-center gap-3" aria-hidden="true">
+    <div className="mt-4 flex h-[120px] w-full items-center justify-center gap-3 sm:w-auto" aria-hidden="true">
       <div className="h-[110px] w-[90px] rotate-[-8deg] rounded-[20px] bg-gradient-to-br from-[#2563eb] to-[#7c3aed] opacity-90 shadow-lg" />
       <div className="h-[110px] w-[90px] rotate-[7deg] rounded-[20px] bg-gradient-to-br from-[#f97316] to-[#ec4899] opacity-90 shadow-lg" />
     </div>
@@ -45,7 +45,7 @@ export default function WhyChooseMe() {
   return (
     <section className="mx-auto max-w-[1180px] px-4 py-24">
       <Reveal className="text-center">
-        <h2 className="text-[40px] font-bold leading-[1.1] tracking-tight text-[#111] dark:text-[#f5f5f5]">
+        <h2 className="text-[32px] font-bold leading-[1.1] tracking-tight text-[#111] dark:text-[#f5f5f5] sm:text-[40px]">
           Many Reasons why you
           <br />
           Should <span className="text-[#cfcfcf] dark:text-[#ff6b00]">Choose Me</span>
@@ -114,7 +114,7 @@ export default function WhyChooseMe() {
 
       <div className="mt-5 grid gap-5 md:grid-cols-2">
         <Reveal className="h-full">
-          <div className="flex h-full items-start gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm transition dark:border-[#262626] dark:bg-[#161616] dark:hover:border-orange-500/40 dark:hover:shadow-[0_16px_40px_rgba(255,107,0,0.10)]">
+          <div className="flex h-full flex-col items-start gap-4 sm:flex-row sm:gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm transition dark:border-[#262626] dark:bg-[#161616] dark:hover:border-orange-500/40 dark:hover:shadow-[0_16px_40px_rgba(255,107,0,0.10)]">
             <ClockArt />
             <div>
               <h3 className="text-[17px] font-bold text-ink dark:text-[#f5f5f5]">Fast Execution</h3>
@@ -123,7 +123,7 @@ export default function WhyChooseMe() {
           </div>
         </Reveal>
         <Reveal delay={0.05} className="h-full">
-          <div className="flex h-full items-start gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm transition dark:border-[#262626] dark:bg-[#161616] dark:hover:border-orange-500/40 dark:hover:shadow-[0_16px_40px_rgba(255,107,0,0.10)]">
+          <div className="flex h-full flex-col items-start gap-4 sm:flex-row sm:gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm transition dark:border-[#262626] dark:bg-[#161616] dark:hover:border-orange-500/40 dark:hover:shadow-[0_16px_40px_rgba(255,107,0,0.10)]">
             <CollabArt />
             <div>
               <h3 className="text-[17px] font-bold text-ink dark:text-[#f5f5f5]">Collaboration</h3>

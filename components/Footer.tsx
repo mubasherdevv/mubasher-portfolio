@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer className="w-full">
       <Reveal>
-        <div className="bg-[#f7f7f7] px-8 pt-12 sm:px-12 lg:px-16 dark:bg-[#161616]">
+        <div className="bg-[#f7f7f7] px-5 pt-12 sm:px-12 lg:px-16 dark:bg-[#161616]">
           <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
             <div className="max-w-md">
               <p className="text-[20px] font-bold leading-snug text-ink dark:text-[#f5f5f5]">
@@ -67,11 +67,11 @@ export default function Footer() {
               uppercase in 'en' mode; orange + subtle glow in both. */}
           <div className="overflow-hidden pb-6 pt-6" aria-hidden="true">
             {lang === "ur" ? (
-              <p className="wordmark wordmark-urdu font-urdu select-none text-center font-bold tracking-tight" style={{ fontSize: "clamp(64px, 12vw, 150px)" }}>
+              <p className="wordmark wordmark-urdu font-urdu select-none text-center font-bold tracking-tight" style={{ fontSize: "clamp(52px, 12vw, 150px)" }}>
                 محمد مبشر
               </p>
             ) : (
-              <p className="wordmark select-none whitespace-nowrap text-center font-bold uppercase tracking-tight" style={{ fontSize: "clamp(32px, 7vw, 110px)", lineHeight: 1.05 }}>
+              <p className="wordmark select-none whitespace-nowrap text-center font-bold uppercase tracking-tight" style={{ fontSize: "clamp(22px, 7vw, 110px)", lineHeight: 1.05 }}>
                 Muhammad Mubasher
               </p>
             )}
