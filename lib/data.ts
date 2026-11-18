@@ -3,8 +3,8 @@
 // no fake testimonials, clients, stats, or social links.
 
 export const profile = {
-  name: "Muhammad Mubasher",
-  firstName: "Mubasher",
+  name: "محمد مبشر",
+  firstName: "مبشر",
   title: "Full-Stack Developer | Agentic AI Developer",
   heroLine1: "I'm a Full-Stack Developer",
   heroLine2: "and Agentic AI Developer.",
@@ -13,9 +13,9 @@ export const profile = {
   heroShort:
     "I build modern web apps and intelligent AI workflows — from idea to live product. React, Next.js, Node.js, Supabase and AI APIs, connected into tools that work for real businesses.",
   email: "withm345@gmail.com",
-  phone: "+92 329 434 0393",
-  phoneHref: "tel:+923294340393",
-  location: "Lahore, Pakistan",
+  phone: "+9200000000",
+  phoneHref: "tel:+9200000000",
+  location: "لاہور، پاکستان",
   timezone: "PKT (GMT+5)",
   linkedin: "https://www.linkedin.com/in/muhammad-mubasher2/",
   cvHref: "/Muhammad_Mubasher_CV.pdf",
