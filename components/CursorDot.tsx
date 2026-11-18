@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 
 /**
@@ -21,22 +21,42 @@ export default function CursorDot() {
   const [viewing, setViewing] = useState(false);
   const [hovering, setHovering] = useState(false);
   const [texting, setTexting] = useState(false);
+  // Last values sent to state (see the mousemove guard below).
+  const visRef = useRef(false);
+  const hoverRef = useRef(false);
+  const textRef = useRef(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(pointer: fine)");
     setFine(mq.matches);
     if (!mq.matches) return;
+    // Only call setState when a value actually changes: mousemove fires
+    // constantly, and a setState per move (even a bail-out) is wasted
+    // main-thread work on every pointer move.
     const move = (e: MouseEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
-      setVisible(true);
+      if (!visRef.current) {
+        visRef.current = true;
+        setVisible(true);
+      }
       const t = e.target as HTMLElement | null;
       const interactive = !!t?.closest("a,button,[role='button'],input,textarea,select,[data-cursor]");
       const textEl = !!t?.closest("p,h1,h2,h3,h4,h5,h6,li,blockquote,figcaption");
-      setHovering(interactive);
-      setTexting(!interactive && textEl);
+      const texting = !interactive && textEl;
+      if (hoverRef.current !== interactive) {
+        hoverRef.current = interactive;
+        setHovering(interactive);
+      }
+      if (textRef.current !== texting) {
+        textRef.current = texting;
+        setTexting(texting);
+      }
     };
-    const leave = () => setVisible(false);
+    const leave = () => {
+      visRef.current = false;
+      setVisible(false);
+    };
     const onView = (e: Event) => setViewing((e as CustomEvent<boolean>).detail);
     window.addEventListener("mousemove", move);
     window.addEventListener("mubasher:cursor-view", onView);

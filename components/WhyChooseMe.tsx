@@ -66,7 +66,7 @@ export default function WhyChooseMe() {
                   className="flex h-12 items-center justify-center rounded-xl border border-line bg-white text-[var(--ic)] shadow-sm dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[var(--ic-dark)]"
                   style={{ "--ic": color, "--ic-dark": darkColor ?? color } as CSSProperties}
                 >
-                  <Icon size={22} />
+                  <Icon size={22} aria-hidden="true" />
                 </span>
               ))}
             </div>

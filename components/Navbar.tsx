@@ -75,7 +75,7 @@ function ThemeToggle() {
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-ink transition hover:bg-neutral-100 dark:text-[#f5f5f5] dark:hover:bg-[#262626]"
     >
-      {dark ? <FiSun size={18} className="text-[#ff6b00]" /> : <FiMoon size={18} />}
+      {dark ? <FiSun size={18} className="text-[#ff6b00]" aria-hidden="true" /> : <FiMoon size={18} aria-hidden="true" />}
     </button>
   );
 }

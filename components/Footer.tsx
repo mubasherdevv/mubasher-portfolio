@@ -36,7 +36,7 @@ export default function Footer() {
                   aria-label="GitHub"
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 bg-white text-ink transition hover:border-ink dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[#f5f5f5] dark:hover:border-[#ff6b00] dark:hover:text-[#ff6b00]"
                 >
-                  <SiGithub size={18} />
+                  <SiGithub size={18} aria-hidden="true" />
                 </a>
                 <a
                   href={profile.youtube}
@@ -45,7 +45,7 @@ export default function Footer() {
                   aria-label="YouTube"
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 bg-white text-ink transition hover:border-ink dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[#f5f5f5] dark:hover:border-[#ff6b00] dark:hover:text-[#ff6b00]"
                 >
-                  <SiYoutube size={18} />
+                  <SiYoutube size={18} aria-hidden="true" />
                 </a>
               </div>
             </div>

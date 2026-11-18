@@ -33,7 +33,7 @@ function ToolTile({ Icon, color, darkColor, name }: { Icon: IconType; color: str
       className="flex h-11 w-11 items-center justify-center rounded-2xl border border-line bg-white text-[var(--ic)] shadow-[0_8px_24px_rgba(0,0,0,0.07)] transition dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[var(--ic-dark)] dark:hover:border-orange-500/50 dark:hover:shadow-[0_8px_24px_rgba(255,107,0,0.15)] lg:h-[54px] lg:w-[54px]"
       style={{ "--ic": color, "--ic-dark": darkColor ?? color } as CSSProperties}
     >
-      <Icon size={32} className="h-7 w-7 lg:h-8 lg:w-8" />
+      <Icon size={32} className="h-7 w-7 lg:h-8 lg:w-8" aria-hidden="true" />
     </span>
   );
 }

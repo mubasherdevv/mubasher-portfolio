@@ -52,7 +52,7 @@ function Row({ items, reverse = false }: { items: string[]; reverse?: boolean })
           const brand = colors[t];
           return (
             <span key={i} className="flex items-center gap-2.5 whitespace-nowrap text-ink dark:text-[#f5f5f5]">
-              {Icon && (brand ? <Icon size={20} style={{ color: brand }} /> : <Icon size={20} className="text-[#111] dark:text-white" />)}
+              {Icon && (brand ? <Icon size={20} style={{ color: brand }} aria-hidden="true" /> : <Icon size={20} className="text-[#111] dark:text-white" aria-hidden="true" />)}
               <span className="text-[17px] font-medium">{t}</span>
             </span>
           );

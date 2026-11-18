@@ -23,8 +23,10 @@ function useIsDark() {
 }
 
 const fade = (delay: number) => ({
-  initial: { opacity: 0, y: 24, filter: "blur(4px)" },
-  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
+  // Opacity + translate only (composited). No filter/blur: animating blur
+  // forces a repaint every frame and caused layout shift in the hero.
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
   transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 

@@ -43,7 +43,7 @@ export default function ScrollProgress() {
             transition={{ duration: 0.25, ease: "easeOut" }}
             className="fixed bottom-6 right-6 z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-neutral-200 bg-white text-ink shadow-lg transition hover:bg-neutral-100 dark:border-[#ff6b00] dark:bg-[#ff6b00] dark:text-white dark:hover:bg-orange-600"
           >
-            <FiArrowUp size={18} />
+            <FiArrowUp size={18} aria-hidden="true" />
           </motion.button>
         )}
       </AnimatePresence>

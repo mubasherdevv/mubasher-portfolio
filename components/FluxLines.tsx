@@ -289,6 +289,9 @@ const FluxLines = ({
       antialias: false,
       depth: false,
       stencil: false,
+      // Prefer the power-efficient GPU: this is a background effect, and
+      // the low-power GPU keeps the animation off the critical path.
+      powerPreference: 'low-power',
     });
     if (!container || !canvas || !gl) return undefined;
 
@@ -333,6 +336,12 @@ const FluxLines = ({
     let raf = 0;
     let last = 0;
     let visible = true;
+    // Throttle draws to ~30fps: the fragment shader is heavy, and at
+    // 60fps each draw can block the main thread while the GPU catches up
+    // (the TBT whale). State (time/magnet/swirl) still advances every
+    // rAF tick, so the animation speed is unchanged — just sampled slower.
+    const FRAME_MS = 1000 / 30;
+    let lastRender = 0;
 
     const render = () => {
       const s = settingsRef.current;
@@ -391,7 +400,12 @@ const FluxLines = ({
       magnet.active += (target - magnet.active) * (1 - Math.exp(-dt / 0.3));
       if (Math.abs(target - magnet.active) < 0.001) magnet.active = target;
 
-      render();
+      // Draw at most ~30fps (see FRAME_MS above); state above still
+      // advances every rAF tick so the motion speed is unchanged.
+      if (now - lastRender >= FRAME_MS) {
+        lastRender = now;
+        render();
+      }
       const busy = motion > 0 || magnet.active !== target || reveal < 1 || swirl.age < 6;
       if (busy) raf = requestAnimationFrame(frame);
       else last = 0;
@@ -405,7 +419,9 @@ const FluxLines = ({
       const s = settingsRef.current;
       const width = Math.max(1, container.clientWidth);
       const height = Math.max(1, container.clientHeight);
-      const ratio = Math.min(s.dpr || window.devicePixelRatio || 1, 2);
+      // Cap the backing-store ratio at 1.5 (was 2): on a DPR-3 phone the
+      // hero canvas was ~3x the pixels it needs for a background effect.
+      const ratio = Math.min(s.dpr || window.devicePixelRatio || 1, 1.5);
       canvas.width = Math.max(1, Math.round(width * ratio));
       canvas.height = Math.max(1, Math.round(height * ratio));
       render();

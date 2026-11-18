@@ -60,16 +60,16 @@ export default function About() {
               M
             </span>
             <span className="absolute left-5 top-5 flex h-9 w-9 rotate-[-6deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400 sm:h-12 sm:w-12">
-              <SiReact className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" />
+              <SiReact className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" aria-hidden="true" />
             </span>
             <span className="absolute right-5 top-8 flex h-9 w-9 rotate-[7deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400 sm:h-12 sm:w-12">
-              <SiNextdotjs className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" />
+              <SiNextdotjs className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" aria-hidden="true" />
             </span>
             <span className="absolute bottom-6 left-8 flex h-9 w-9 rotate-[5deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400 sm:h-12 sm:w-12">
-              <SiN8N className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" />
+              <SiN8N className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" aria-hidden="true" />
             </span>
             <span className="absolute bottom-10 right-8 flex h-9 w-9 rotate-[-8deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400 sm:h-12 sm:w-12">
-              <SiSupabase className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" />
+              <SiSupabase className="h-[18px] w-[18px] sm:h-[22px] sm:w-[22px]" aria-hidden="true" />
             </span>
             <span className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-2 text-sm font-bold text-ink shadow dark:bg-[#1a1a1a] dark:text-[#f5f5f5]">
               {lang === "ur" ? <span className="font-urdu">{profile.name}</span> : profile.nameEn}

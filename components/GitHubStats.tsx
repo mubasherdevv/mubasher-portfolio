@@ -117,7 +117,7 @@ export default async function GitHubStats() {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#111] text-white dark:bg-[#f5f5f5] dark:text-[#111]">
-                <SiGithub size={24} />
+                <SiGithub size={24} aria-hidden="true" />
               </span>
               <div>
                 <p className="text-[18px] font-bold text-ink dark:text-[#f5f5f5]">@mubasherdevv</p>
@@ -180,6 +180,10 @@ export default async function GitHubStats() {
                 src="https://ghchart.rshah.org/219653/mubasherdevv"
                 alt="Muhammad Mubasher's GitHub contribution graph"
                 loading="lazy"
+                // Natural size of the ghchart SVG (663×104): reserves the
+                // aspect ratio before it loads, so it cannot shift layout.
+                width={663}
+                height={104}
                 className="w-full min-w-[720px] lg:min-w-0"
               />
             </div>
