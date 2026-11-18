@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import { Inter, Caveat } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-inter" });
+const caveat = Caveat({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-caveat" });
 
 export const metadata: Metadata = {
   title: "Muhammad Mubasher — Full-Stack Developer | Agentic AI Developer",
@@ -16,7 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="font-sans">{children}</body>
+      <body className={`${inter.variable} ${caveat.variable} font-sans`}>{children}</body>
     </html>
   );
 }

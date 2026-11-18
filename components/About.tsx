@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
-import Image from "next/image";
 import Reveal from "./Reveal";
+import WordReveal from "./WordReveal";
 import { profile, stats, languages } from "@/lib/data";
+import { SiNextdotjs, SiN8N, SiReact, SiSupabase } from "react-icons/si";
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -14,7 +15,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
   useEffect(() => {
     if (!inView) return;
     const start = performance.now();
-    const dur = 1200;
+    const dur = 700; // fast count-up, settles quickly
     let raf = 0;
     const tick = (t: number) => {
       const p = Math.min(1, (t - start) / dur);
@@ -26,7 +27,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
   }, [inView, value]);
 
   return (
-    <span ref={ref} className="text-3xl font-extrabold text-ink sm:text-4xl">
+    <span ref={ref} className="text-[38px] font-bold text-ink">
       {n}
       {suffix}
     </span>
@@ -35,36 +36,47 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
 export default function About() {
   return (
-    <section id="about" className="mx-auto max-w-6xl px-4 py-16">
-      <Reveal>
-        <h2 className="text-center text-4xl font-extrabold leading-[1.08] tracking-tight text-ink sm:text-5xl">
-          Building web apps &amp; AI workflows <span className="text-neutral-300">that solve real problems</span>
+    <section id="about" className="mx-auto max-w-[1180px] px-4 py-24">
+      <Reveal className="text-center">
+        <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3.5 py-1.5 text-[13px] font-medium text-neutral-700 shadow-sm">
+          <span className="h-2.5 w-2.5 rounded-[2px] bg-[#ff6b00]" />
+          About me
+        </span>
+      </Reveal>
+      <Reveal className="mt-5">
+        <h2 className="mx-auto max-w-3xl text-center text-[36px] font-bold leading-[1.1] tracking-tight sm:text-[40px]">
+          <WordReveal text="Building web apps & AI workflows that solve real problems" pale={["solve", "real", "problems"]} />
         </h2>
       </Reveal>
-      <div className="mt-12 grid items-start gap-10 md:grid-cols-5">
-        {/* Portrait panel — gradient + big initial, photo shown small at native
-            size only. The 150x150 source is NOT stretched into a large portrait. */}
-        <Reveal className="md:col-span-2">
-          <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-blue-600 via-violet-600 to-orange-500 p-1.5">
-            <div className="flex flex-col items-center rounded-[24px] bg-white px-6 py-10 text-center">
-              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-orange-500 text-4xl font-extrabold text-white shadow-lg">
-                M
-              </div>
-              <Image
-                src="/me.jpg"
-                alt="Muhammad Mubasher"
-                width={72}
-                height={72}
-                className="mt-4 h-[72px] w-[72px] rounded-full border-2 border-white object-cover shadow"
-              />
-              <p className="mt-4 text-xl font-extrabold text-ink">{profile.name}</p>
-              <p className="mt-1 text-sm font-medium text-neutral-500">{profile.title}</p>
-              <p className="mt-3 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">● Available for work</p>
-            </div>
+
+      <div className="mt-12 grid items-start gap-10 md:grid-cols-2">
+        {/* Portrait — pure CSS gradient panel + monogram, NO photo */}
+        <Reveal>
+          <div className="relative flex h-[470px] items-center justify-center overflow-hidden rounded-2xl bg-[#f5f5f5]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#dbeafe,transparent_55%),radial-gradient(circle_at_75%_80%,#fed7aa,transparent_55%)]" />
+            <span className="relative flex h-56 w-56 items-center justify-center rounded-full bg-gradient-to-br from-[#ff6b00] via-[#f43f5e] to-[#7c3aed] text-[110px] font-extrabold text-white shadow-xl">
+              M
+            </span>
+            <span className="absolute left-5 top-5 flex h-12 w-12 rotate-[-6deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md">
+              <SiReact size={22} />
+            </span>
+            <span className="absolute right-5 top-8 flex h-12 w-12 rotate-[7deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md">
+              <SiNextdotjs size={22} />
+            </span>
+            <span className="absolute bottom-6 left-8 flex h-12 w-12 rotate-[5deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md">
+              <SiN8N size={22} />
+            </span>
+            <span className="absolute bottom-10 right-8 flex h-12 w-12 rotate-[-8deg] items-center justify-center rounded-xl border border-line bg-white text-neutral-600 shadow-md">
+              <SiSupabase size={22} />
+            </span>
+            <span className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-2 text-sm font-bold text-ink shadow">
+              {profile.name}
+            </span>
           </div>
         </Reveal>
-        <Reveal delay={0.1} className="md:col-span-3">
-          <div className="space-y-4 text-base leading-relaxed text-neutral-600">
+
+        <Reveal delay={0.1}>
+          <div className="space-y-6 text-[16px] leading-[1.6] text-[#666]">
             <p>
               <strong className="text-ink">I&apos;m {profile.name}, a Full-Stack Developer and Agentic AI Developer</strong> with a background in
               engineering — bridging the gap between beautiful design and working products.
@@ -82,7 +94,7 @@ export default function About() {
               software and creating experiences that solve real problems for real people.
             </p>
           </div>
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-7 flex flex-wrap gap-2">
             {languages.map((l) => (
               <span key={l.name} className="rounded-full bg-neutral-100 px-4 py-2 text-sm font-semibold text-neutral-700">
                 {l.name} — {l.level}
@@ -91,12 +103,13 @@ export default function About() {
           </div>
         </Reveal>
       </div>
-      <Reveal delay={0.1}>
-        <div className="mt-12 grid grid-cols-3 gap-4 rounded-[24px] border border-line bg-white p-6 text-center shadow-sm sm:p-8">
+
+      <Reveal delay={0.1} className="mt-14">
+        <div className="grid grid-cols-3 divide-x divide-line rounded-[24px] border border-line bg-white px-6 py-8 text-center shadow-sm">
           {stats.map((s) => (
-            <div key={s.label}>
+            <div key={s.label} className="px-2">
               <Counter value={s.value} suffix={s.suffix} />
-              <p className="mt-1 text-xs font-medium text-neutral-500 sm:text-sm">{s.label}</p>
+              <p className="mt-1 text-[13px] font-medium text-neutral-500">{s.label}</p>
             </div>
           ))}
         </div>

@@ -13,7 +13,7 @@ export default function Mockup({
 }) {
   if (kind === "phone") {
     return (
-      <div className="mx-auto flex w-40 flex-col overflow-hidden rounded-[2rem] border-4 border-neutral-900 bg-white shadow-xl">
+      <div className="mx-auto flex w-48 flex-col overflow-hidden rounded-[2rem] border-4 border-neutral-900 bg-white shadow-xl">
         <div className="flex items-center justify-center bg-neutral-900 py-1.5">
           <span className="h-2 w-14 rounded-full bg-neutral-700" />
         </div>
@@ -28,7 +28,7 @@ export default function Mockup({
   }
   if (kind === "flow") {
     return (
-      <div className="mx-auto w-full max-w-xs rounded-2xl bg-white/95 p-4 shadow-xl">
+      <div className="mx-auto w-full max-w-[420px] rounded-2xl bg-white/95 p-4 shadow-xl">
         <div className="flex items-center gap-2">
           <span className="rounded-lg bg-violet-600 px-2.5 py-1.5 text-[11px] font-bold text-white">AI API</span>
           <span className="text-neutral-400">→</span>
@@ -43,7 +43,7 @@ export default function Mockup({
   }
   if (kind === "sheet") {
     return (
-      <div className="mx-auto w-full max-w-xs overflow-hidden rounded-2xl bg-white shadow-xl">
+      <div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-2xl bg-white shadow-xl">
         <div className="flex gap-1.5 bg-neutral-100 px-3 py-2">
           {["Business", "Contact", "Website"].map((h) => (
             <span key={h} className="rounded bg-white px-2 py-1 text-[10px] font-bold text-neutral-700 shadow-sm">{h}</span>
@@ -64,7 +64,7 @@ export default function Mockup({
   }
   // browser
   return (
-    <div className="mx-auto w-full max-w-xs overflow-hidden rounded-2xl bg-white shadow-xl">
+    <div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-2xl bg-white shadow-xl">
       <div className="flex items-center gap-1.5 bg-neutral-100 px-3 py-2">
         <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
         <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />

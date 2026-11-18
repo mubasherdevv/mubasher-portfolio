@@ -8,14 +8,14 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
-        hand: ["'Segoe Script'", "'Bradley Hand'", "cursive"],
+        sans: ["var(--font-inter)", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        hand: ["var(--font-caveat)", "cursive"],
       },
       colors: {
         ink: "#111111",
-        muted: "#6b7280",
+        muted: "#666666",
         pale: "#9ca3af",
-        line: "#e5e7eb",
+        line: "#e8e8e8",
         soft: "#f5f5f4",
       },
       keyframes: {
@@ -31,10 +31,11 @@ const config: Config = {
         },
       },
       animation: {
-        marquee: "marquee 32s linear infinite",
-        "marquee-slow": "marquee 48s linear infinite",
-        "marquee-fast": "marquee 24s linear infinite",
-        "marquee-rev": "marquee-rev 40s linear infinite",
+        marquee: "marquee 90s linear infinite",
+        "marquee-slow": "marquee 120s linear infinite",
+        "marquee-rev": "marquee-rev 100s linear infinite",
+        "marquee-tech": "marquee 60s linear infinite",
+        "marquee-tech-rev": "marquee-rev 60s linear infinite",
         floaty: "floaty 5s ease-in-out infinite",
         drift: "drift 6s ease-in-out infinite",
       },

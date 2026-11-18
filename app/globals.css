@@ -13,8 +13,7 @@ body {
   overflow-x: hidden;
 }
 
-/* FIX vs Twambi: every anchored section gets room under the floating pill nav,
-   so headings are never hidden behind it when jumping or scrolling. */
+/* Anchored sections land below the floating pill nav. */
 section[id] {
   scroll-margin-top: 110px;
 }
@@ -24,19 +23,18 @@ section[id] {
   color: #fff;
 }
 
-/* Dotted Figma-canvas background for the preloader / hero */
+/* Dotted Figma-canvas background — preloader only (hero has none). */
 .dot-grid {
-  background-image: radial-gradient(#d1d5db 1.2px, transparent 1.2px);
-  background-size: 22px 22px;
+  background-image: radial-gradient(#d4d4d4 1.2px, transparent 1.2px);
+  background-size: 34px 34px;
 }
 
 /* Edge fade for marquees */
 .fade-x {
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-/* Hide scrollbars on horizontal strips */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -45,7 +43,16 @@ section[id] {
   scrollbar-width: none;
 }
 
-/* Custom cursor circle on project cards */
+/* Custom cursor: hide native pointer only over project cards */
 .view-cursor {
   cursor: none;
+}
+
+/* Giant footer wordmark — letters fade to white, never sliced */
+.wordmark {
+  background: linear-gradient(180deg, #d6d6d6 0%, #e9e9e9 55%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 0.78;
 }

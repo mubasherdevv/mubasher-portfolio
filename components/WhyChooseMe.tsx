@@ -1,61 +1,123 @@
-import Reveal, { SectionHeading } from "./Reveal";
+import Reveal from "./Reveal";
 import { whyChooseMe } from "@/lib/data";
+import { SiGithub, SiNextdotjs, SiN8N, SiReact, SiSupabase, SiTypescript, SiWordpress } from "react-icons/si";
+
+const toolIcons = [SiReact, SiNextdotjs, SiTypescript, SiSupabase, SiN8N, SiGithub, SiWordpress];
+
+function ClockArt() {
+  return (
+    <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true" className="mt-4">
+      <circle cx="60" cy="60" r="52" fill="white" stroke="#e8e8e8" strokeWidth="2" />
+      {Array.from({ length: 12 }).map((_, i) => {
+        const a = (i * 30 * Math.PI) / 180;
+        return <circle key={i} cx={60 + 44 * Math.sin(a)} cy={60 - 44 * Math.cos(a)} r={i % 3 === 0 ? 3 : 1.5} fill="#9ca3af" />;
+      })}
+      <line x1="60" y1="60" x2="60" y2="30" stroke="#ef4444" strokeWidth="4" strokeLinecap="round" />
+      <line x1="60" y1="60" x2="84" y2="66" stroke="#111" strokeWidth="4" strokeLinecap="round" />
+      <circle cx="60" cy="60" r="5" fill="#111" />
+    </svg>
+  );
+}
+
+function CollabArt() {
+  return (
+    <div className="mt-4 flex h-[120px] items-center justify-center gap-3" aria-hidden="true">
+      <div className="h-[110px] w-[90px] rotate-[-8deg] rounded-[20px] bg-gradient-to-br from-[#2563eb] to-[#7c3aed] opacity-90 shadow-lg" />
+      <div className="h-[110px] w-[90px] rotate-[7deg] rounded-[20px] bg-gradient-to-br from-[#f97316] to-[#ec4899] opacity-90 shadow-lg" />
+    </div>
+  );
+}
 
 export default function WhyChooseMe() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16">
+    <section className="mx-auto max-w-[1180px] px-4 py-24">
       <Reveal className="text-center">
-        <SectionHeading dark="Many Reasons why you" pale="Should Choose Me" />
+        <h2 className="text-[40px] font-bold leading-[1.1] tracking-tight text-[#111]">
+          Many Reasons why you
+          <br />
+          Should <span className="text-[#cfcfcf]">Choose Me</span>
+        </h2>
       </Reveal>
-      <div className="mt-10 grid gap-5 md:grid-cols-3">
-        {whyChooseMe.map((c, i) => (
-          <Reveal key={c.title} delay={i * 0.08}>
-            <div
-              className={`relative h-full min-h-[240px] overflow-hidden rounded-[24px] p-6 ${
-                c.dark ? "bg-neutral-900 text-white" : "bg-white text-ink border border-line shadow-sm"
-              }`}
-            >
-              <div className="absolute -right-4 -top-4 flex rotate-12 gap-2">
-                {c.pills.slice(0, 2).map((p) => (
-                  <span key={p} className="rounded-full bg-[#ff6b00] px-3 py-1 text-[11px] font-bold text-white shadow">
-                    {p}
-                  </span>
-                ))}
-              </div>
-              <h3 className="text-xl font-extrabold">{c.title}</h3>
-              <p className={`mt-3 text-sm leading-relaxed ${c.dark ? "text-neutral-300" : "text-neutral-600"}`}>{c.text}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {c.pills.map((p) => (
-                  <span
-                    key={p}
-                    className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                      c.dark ? "bg-white/10 text-white" : "bg-neutral-100 text-neutral-600"
-                    }`}
-                  >
-                    {p}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-      <div className="mt-5 grid gap-5 md:grid-cols-2">
-        <Reveal>
-          <div className="flex items-center gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-orange-100 text-2xl">⏱</span>
-            <div>
-              <h3 className="text-lg font-extrabold text-ink">Fast Execution</h3>
-              <p className="mt-1 text-sm text-neutral-600">Delivering working, tested builds on tight timelines — without cutting corners on quality.</p>
+
+      <div className="mt-12 grid gap-5 md:grid-cols-3">
+        {/* Popular Services — 5×2 icon grid */}
+        <Reveal delay={0} className="h-full">
+          <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm">
+            <h3 className="text-[17px] font-bold text-ink">Popular Services</h3>
+            <p className="mt-1 text-sm text-[#666]">End-to-end web development and AI workflow automation.</p>
+            <div className="mt-5 grid grid-cols-5 gap-2">
+              {toolIcons.slice(0, 5).map((Icon, i) => (
+                <span key={i} className="flex h-12 items-center justify-center rounded-xl border border-line bg-white text-neutral-700 shadow-sm">
+                  <Icon size={22} />
+                </span>
+              ))}
+              {toolIcons.slice(5).map((Icon, i) => (
+                <span key={i} className="flex h-12 items-center justify-center rounded-xl border border-line bg-white text-neutral-700 shadow-sm">
+                  <Icon size={22} />
+                </span>
+              ))}
+              <span className="flex h-12 items-center justify-center rounded-xl bg-[#ff6b00] text-[11px] font-bold text-white">+3</span>
+              <span className="flex h-12 items-center justify-center rounded-xl border border-line bg-neutral-50 text-[11px] font-bold text-neutral-500">SEO</span>
+              <span className="flex h-12 items-center justify-center rounded-xl border border-line bg-neutral-50 text-[11px] font-bold text-neutral-500">API</span>
             </div>
           </div>
         </Reveal>
-        <Reveal delay={0.08}>
-          <div className="flex items-center gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-100 text-2xl">🤝</span>
+
+        {/* Robust products — black card, iridescent lightning */}
+        <Reveal delay={0.08} className="h-full">
+          <div className="relative flex h-[270px] flex-col overflow-hidden rounded-[24px] bg-neutral-900 p-6 text-white shadow-sm">
+            <h3 className="text-[17px] font-bold">Robust products</h3>
+            <p className="mt-1 text-sm text-neutral-400">Clean, maintainable code — built to keep working, not just to launch.</p>
+            <svg viewBox="0 0 200 120" className="mt-auto w-full" aria-hidden="true">
+              <defs>
+                <linearGradient id="bolt" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#60a5fa" />
+                  <stop offset="35%" stopColor="#a78bfa" />
+                  <stop offset="70%" stopColor="#f472b6" />
+                  <stop offset="100%" stopColor="#fbbf24" />
+                </linearGradient>
+              </defs>
+              <polygon points="118,6 74,66 102,66 82,114 136,52 106,52" fill="url(#bolt)" />
+            </svg>
+          </div>
+        </Reveal>
+
+        {/* Vast Knowledge — scattered rotated pills, fully inside */}
+        <Reveal delay={0.16} className="h-full">
+          <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm">
+            <h3 className="text-[17px] font-bold text-ink">Vast Knowledge</h3>
+            <p className="mt-1 text-sm text-[#666]">Broad expertise across the stack — one person can carry a project end to end.</p>
+            <div className="mt-5 flex flex-wrap gap-2 px-1">
+              {["Full-Stack", "Agentic AI", "Next.js", "n8n", "Supabase", "WordPress", "SEO", "APIs"].map((p, i) => (
+                <span
+                  key={p}
+                  className="inline-block rounded-full border border-line bg-neutral-50 px-3.5 py-1.5 text-[13px] font-semibold text-neutral-600"
+                  style={{ transform: `rotate(${[-8, 6, -4, 9, -6, 4, -9, 5][i]}deg)` }}
+                >
+                  {p}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="mt-5 grid gap-5 md:grid-cols-2">
+        <Reveal className="h-full">
+          <div className="flex h-full items-start gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm">
+            <ClockArt />
             <div>
-              <h3 className="text-lg font-extrabold text-ink">Collaboration</h3>
-              <p className="mt-1 text-sm text-neutral-600">Clear communication and partnership throughout the project — you always know where things stand.</p>
+              <h3 className="text-[17px] font-bold text-ink">Fast Execution</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#666]">Delivering working, tested builds on tight timelines — without cutting corners on quality.</p>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.08} className="h-full">
+          <div className="flex h-full items-start gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm">
+            <CollabArt />
+            <div>
+              <h3 className="text-[17px] font-bold text-ink">Collaboration</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#666]">Clear communication and partnership throughout the project — you always know where things stand.</p>
             </div>
           </div>
         </Reveal>

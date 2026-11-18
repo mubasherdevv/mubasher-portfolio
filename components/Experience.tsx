@@ -21,25 +21,23 @@ function TimelineRow({
   description: string;
 }) {
   return (
-    <div className="flex gap-4 border-b border-line py-7 last:border-0 sm:gap-6">
+    <div className="flex flex-col gap-4 border-b border-line py-8 last:border-0 sm:flex-row sm:items-start sm:gap-6">
       <div
-        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-sm font-extrabold text-white"
-        style={{ backgroundColor: color }}
+        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-line bg-white text-sm font-extrabold shadow-sm"
+        style={{ color }}
       >
         {initials}
       </div>
-      <div className="min-w-0">
-        <div className="flex flex-wrap items-baseline gap-x-3">
-          <h3 className="text-lg font-extrabold text-ink">{title}</h3>
-          <span className="text-sm font-semibold text-neutral-500">{org}</span>
-        </div>
-        {date ? <p className="mt-0.5 text-sm font-medium text-neutral-500">{date}</p> : null}
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-600">{description}</p>
-        <p className="mt-2 text-sm">
-          {type && <span className="font-bold text-ink">{type}</span>}
-          {type && <span className="text-neutral-400"> · </span>}
-          <span className="text-neutral-500">{location}</span>
-        </p>
+      <div className="min-w-0 flex-1">
+        <h3 className="text-[17px] font-bold text-ink">
+          {title} <span className="font-semibold text-neutral-500">— {org}</span>
+        </h3>
+        <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[#666]">{description}</p>
+      </div>
+      <div className="shrink-0 text-left sm:w-40 sm:text-right">
+        {date ? <p className="text-sm text-neutral-500">{date}</p> : null}
+        {type && <p className="text-[15px] font-bold text-ink">{type}</p>}
+        <p className="text-[13px] text-neutral-500">{location}</p>
       </div>
     </div>
   );
@@ -48,11 +46,11 @@ function TimelineRow({
 export default function Experience() {
   return (
     <>
-      <section id="experience" className="mx-auto max-w-6xl px-4 py-16">
+      <section id="experience" className="mx-auto max-w-[1180px] px-4 py-24">
         <Reveal>
           <SectionLabel>Experience</SectionLabel>
         </Reveal>
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} className="mt-4">
           {experience.map((e) => (
             <TimelineRow
               key={e.company}
@@ -69,11 +67,11 @@ export default function Experience() {
         </Reveal>
       </section>
 
-      <section id="education" className="mx-auto max-w-6xl px-4 py-8">
+      <section id="education" className="mx-auto max-w-[1180px] px-4 pb-24">
         <Reveal>
           <SectionLabel>Education</SectionLabel>
         </Reveal>
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} className="mt-4">
           {education.map((e) => (
             <TimelineRow
               key={e.school}

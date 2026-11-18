@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+import WordReveal from "./WordReveal";
 
-/** Scroll-reveal: fades + de-blurs in, Twambi-style — but settles to full
-    contrast quickly so text is never left washed out mid-scroll. */
+/** Scroll reveal: fade + slide up only. No blur — blur left text looking unfinished. */
 export default function Reveal({
   children,
   delay = 0,
@@ -17,10 +17,10 @@ export default function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 28, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>
@@ -29,13 +29,14 @@ export default function Reveal({
 
 export function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-1.5 text-xs font-semibold tracking-wide text-neutral-700 shadow-sm">
-      <span className="h-2 w-2 rounded-[2px] bg-[#ff6b00]" />
+    <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3.5 py-1.5 text-[13px] font-medium text-neutral-700 shadow-sm">
+      <span className="h-2.5 w-2.5 rounded-[2px] bg-[#ff6b00]" />
       {children}
     </span>
   );
 }
 
+/** Heading with Twambi's word-by-word pale-to-black reveal. `pale` words stay pale. */
 export function SectionHeading({
   dark,
   pale,
@@ -45,13 +46,14 @@ export function SectionHeading({
   pale: string;
   align?: "center" | "left";
 }) {
+  const paleWords = pale.split(" ").map((w) => w.replace(/[.,]/g, ""));
   return (
     <h2
-      className={`text-4xl font-extrabold leading-[1.08] tracking-tight text-ink sm:text-5xl ${
+      className={`text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl ${
         align === "center" ? "text-center" : "text-left"
       }`}
     >
-      {dark} <span className="text-neutral-300">{pale}</span>
+      <WordReveal text={`${dark} ${pale}`} pale={paleWords} />
     </h2>
   );
 }

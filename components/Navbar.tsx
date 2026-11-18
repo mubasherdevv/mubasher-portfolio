@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { profile } from "@/lib/data";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -10,62 +9,51 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
+function NavLink({ label, href, onClick }: { label: string; href: string; onClick?: () => void }) {
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      className="group relative block overflow-hidden rounded-full px-4 py-2 text-sm font-medium text-neutral-600 transition hover:text-ink"
+    >
+      {/* doubled-label rollover */}
+      <span className="block transition-transform duration-300 group-hover:-translate-y-[110%]">{label}</span>
+      <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center px-4 transition-transform duration-300 group-hover:translate-y-0 translate-y-[110%] text-ink">
+        {label}
+      </span>
+    </a>
+  );
+}
+
+/** Floating pill nav ~440×64px, centred. No black Contact button (Twambi has none). */
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-      <nav className="flex w-full max-w-xl items-center justify-between rounded-full border border-line bg-white/90 py-2 pl-5 pr-2 shadow-lg shadow-black/5 backdrop-blur-md">
-        <a href="#home" className="text-xl font-extrabold tracking-tight text-ink" aria-label="Home">
+    <header className="fixed inset-x-0 top-6 z-50 flex justify-center px-4">
+      <nav className="flex h-16 w-[440px] max-w-full items-center justify-between rounded-2xl border border-neutral-200/80 bg-white/95 px-3 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-md">
+        <a href="#home" className="flex h-12 w-12 items-center justify-center rounded-xl border border-neutral-200 bg-white text-xl font-extrabold tracking-tight text-ink" aria-label="Home">
           m<span className="text-[#ff6b00]">.</span>
         </a>
         <div className="hidden items-center gap-1 sm:flex">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="rounded-full px-3.5 py-2 text-sm font-medium text-neutral-600 transition hover:bg-neutral-100 hover:text-ink"
-            >
-              {l.label}
-            </a>
+            <NavLink key={l.href} label={l.label} href={l.href} />
           ))}
         </div>
-        <div className="flex items-center gap-2">
-          <a
-            href="#contact"
-            className="hidden rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-neutral-800 sm:block"
-          >
-            Contact me
-          </a>
-          <button
-            onClick={() => setOpen(!open)}
-            className="rounded-full px-3 py-2 text-sm font-semibold text-ink hover:bg-neutral-100 sm:hidden"
-            aria-label="Toggle menu"
-            aria-expanded={open}
-          >
-            {open ? "✕" : "☰"}
-          </button>
-        </div>
+        <button
+          onClick={() => setOpen(!open)}
+          className="flex h-10 w-10 items-center justify-center rounded-full text-lg font-semibold text-ink hover:bg-neutral-100 sm:hidden"
+          aria-label="Toggle menu"
+          aria-expanded={open}
+        >
+          {open ? "✕" : "☰"}
+        </button>
+        <span className="hidden w-12 sm:block" aria-hidden="true" />
       </nav>
       {open && (
-        <div className="absolute top-16 w-full max-w-xl rounded-3xl border border-line bg-white p-3 shadow-xl sm:hidden">
+        <div className="absolute top-[72px] w-full max-w-[440px] rounded-3xl border border-line bg-white p-3 shadow-xl sm:hidden">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="block rounded-2xl px-4 py-3 text-sm font-medium text-neutral-700 hover:bg-neutral-100"
-            >
-              {l.label}
-            </a>
+            <NavLink key={l.href} label={l.label} href={l.href} onClick={() => setOpen(false)} />
           ))}
-          <a
-            href={profile.cvHref}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-1 block rounded-2xl bg-ink px-4 py-3 text-center text-sm font-semibold text-white"
-          >
-            View my CV
-          </a>
         </div>
       )}
     </header>

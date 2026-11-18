@@ -10,6 +10,8 @@ export const profile = {
   heroLine2: "and Agentic AI Developer.",
   intro:
     "Full-stack developer focused on building modern web applications and exploring agentic AI systems. Works with JavaScript/TypeScript, React, Next.js, Node.js, and Supabase, with hands-on experience in API integrations, workflow automation, and AI-assisted development. Interested in building practical AI agents and intelligent tools that connect models, APIs, and business workflows.",
+  heroShort:
+    "I build modern web apps and intelligent AI workflows — from idea to live product. React, Next.js, Node.js, Supabase and AI APIs, connected into tools that work for real businesses.",
   email: "withm345@gmail.com",
   phone: "+92 329 434 0393",
   phoneHref: "tel:+923294340393",
