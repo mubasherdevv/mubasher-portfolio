@@ -10,6 +10,7 @@ import Services from "@/components/Services";
 import WhyChooseMe from "@/components/WhyChooseMe";
 import Tools from "@/components/Tools";
 import About from "@/components/About";
+import GitHubStats from "@/components/GitHubStats";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -25,13 +26,14 @@ export default function Home() {
       <Hero />
       <TechStack />
       <IntroStatement />
+      <About />
+      <GitHubStats />
       <Projects />
       <Experience />
       <Process />
       <Services />
       <WhyChooseMe />
       <Tools />
-      <About />
       <FAQ />
 
       {/* Quote — static alternating two-tone: lines 1 & 3 black, 2 & 4 pale */}
