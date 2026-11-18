@@ -39,7 +39,7 @@ export default function Hero() {
   return (
     <section id="home" className="relative overflow-hidden pb-10 pt-32 sm:pt-36">
       <div className="relative mx-auto max-w-[1180px] px-4 text-center">
-        {/* Monogram avatar (pure CSS — no photo) + "Hi I am Mubasher" pill */}
+        {/* Monogram avatar (pure CSS — no photo) + "محمد مبشر" pill */}
         <motion.div {...fade(0.1)} className="relative mx-auto h-[100px] w-[100px]">
           <div className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-gradient-to-br from-[#ff6b00] via-[#f43f5e] to-[#7c3aed] text-[44px] font-extrabold text-white shadow-lg ring-4 ring-white">
             M
@@ -48,7 +48,7 @@ export default function Hero() {
         </motion.div>
         <motion.div {...fade(0.18)} className="relative z-10 -mt-3 flex justify-center">
           <span className="rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-[0_6px_20px_rgba(0,0,0,0.10)] ring-1 ring-neutral-100">
-            Hi I am Mubasher
+            محمد مبشر
           </span>
         </motion.div>
 
