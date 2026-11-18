@@ -4,9 +4,9 @@ import { SiGithub, SiYoutube } from "react-icons/si";
 
 export default function Footer() {
   return (
-    <footer className="mx-auto max-w-[1180px] px-4 pb-8">
+    <footer className="w-full">
       <Reveal>
-        <div className="rounded-[24px] bg-[#f7f7f7] px-8 pt-12 sm:px-12 dark:bg-[#161616]">
+        <div className="bg-[#f7f7f7] px-8 pt-12 sm:px-12 lg:px-16 dark:bg-[#161616]">
           <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
             <div className="max-w-md">
               <p className="text-[20px] font-bold leading-snug text-ink dark:text-[#f5f5f5]">
@@ -66,7 +66,7 @@ export default function Footer() {
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-between gap-2 py-4 text-xs text-neutral-500 dark:text-neutral-400">
-            <span>Made with ♥ by <span className="font-urdu">محمد مبشر</span></span>
+            <span>Made with ♥ by <a href={profile.github} target="_blank" rel="noreferrer" className="font-urdu underline-offset-4 hover:text-[#ff6b00] hover:underline">محمد مبشر</a></span>
             <span>
               Thank you <span className="font-bold text-[#ff6b00]">For scrolling</span>
             </span>
