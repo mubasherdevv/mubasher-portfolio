@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { profile, projects } from "@/lib/data";
 import Mockup from "./Mockup";
 import FluxLines from "./FluxLines";
@@ -22,13 +21,10 @@ function useIsDark() {
   return dark;
 }
 
-const fade = (delay: number) => ({
-  // Opacity + translate only (composited). No filter/blur: animating blur
-  // forces a repaint every frame and caused layout shift in the hero.
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
-});
+/** Entrances are pure CSS now (.hero-rise in globals.css): same 0.7s rise
+    and per-element delay as the old framer-motion variant, but they run from
+    first paint with no JS/hydration dependency — the motion version delayed
+    the h1's first paint (LCP). Opacity + translate only. */
 
 const marqueeCards = [...projects, ...projects, ...projects, ...projects];
 
@@ -78,30 +74,30 @@ export default function Hero() {
       </div>
       <div className="relative z-10 mx-auto max-w-[1180px] px-4 text-center">
         {/* Monogram avatar (pure CSS — no photo) + "محمد مبشر" pill */}
-        <motion.div {...fade(0.1)} className="relative mx-auto h-[100px] w-[100px]">
+        <div className="hero-rise relative mx-auto h-[100px] w-[100px]" style={{ animationDelay: "0.1s" }}>
           <div className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-gradient-to-br from-[#ff6b00] via-[#f43f5e] to-[#7c3aed] text-[44px] font-extrabold text-white shadow-lg ring-4 ring-white dark:ring-[#161616]">
             M
           </div>
           <span className="absolute bottom-0 right-0 h-5 w-5 rounded-full border-2 border-white bg-emerald-500 dark:border-[#0a0a0a]" title="Available for work" />
-        </motion.div>
-        <motion.div {...fade(0.18)} className="relative z-10 -mt-3 flex justify-center">
+        </div>
+        <div className="hero-rise relative z-10 -mt-3 flex justify-center" style={{ animationDelay: "0.18s" }}>
           <span className={`${lang === "ur" ? "font-urdu" : ""} rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-[0_6px_20px_rgba(0,0,0,0.10)] ring-1 ring-neutral-100 dark:bg-[#161616] dark:text-neutral-300 dark:ring-[#262626]`}>
             {lang === "ur" ? profile.name : profile.nameEn}
           </span>
-        </motion.div>
+        </div>
 
-        <motion.h1
-          {...fade(0.3)}
-          className="mx-auto mt-6 max-w-[700px] text-[40px] font-bold leading-[1.05] tracking-tight text-[#111] dark:text-[#f5f5f5] sm:text-[56px]"
+        <h1
+          className="hero-rise mx-auto mt-6 max-w-[700px] text-[40px] font-bold leading-[1.05] tracking-tight text-[#111] dark:text-[#f5f5f5] sm:text-[56px]"
+          style={{ animationDelay: "0.3s" }}
         >
           I&apos;m a Full-Stack Developer and <span className="dark:text-[#ff6b00]">Agentic AI Developer.</span>
-        </motion.h1>
+        </h1>
 
-        <motion.p {...fade(0.45)} className="mx-auto mt-5 max-w-[560px] text-[17px] leading-relaxed text-[#666] dark:text-[#a3a3a3]">
+        <p className="hero-rise mx-auto mt-5 max-w-[560px] text-[17px] leading-relaxed text-[#666] dark:text-[#a3a3a3]" style={{ animationDelay: "0.45s" }}>
           {profile.heroShort}
-        </motion.p>
+        </p>
 
-        <motion.div {...fade(0.55)} className="relative mx-auto mt-9 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+        <div className="hero-rise relative mx-auto mt-9 flex flex-wrap items-center justify-center gap-3 sm:gap-4" style={{ animationDelay: "0.55s" }}>
           {/* Handwritten note + curved arrow, left of the buttons */}
           <span className="pointer-events-none absolute -left-2 -top-12 hidden rotate-[-8deg] items-end gap-1 md:flex lg:left-6">
             <span className="font-hand text-[28px] font-semibold leading-none text-neutral-700 dark:text-neutral-300">Lets Chat!</span>
@@ -121,7 +117,7 @@ export default function Hero() {
           >
             View my CV
           </a>
-        </motion.div>
+        </div>
 
         <FloatPill label="Full-Stack" color="#2563eb" className="left-[7%] top-60 -rotate-6" />
         <FloatPill label="Agentic AI" color="#7c3aed" className="right-[7%] top-52 rotate-6" />
@@ -129,7 +125,7 @@ export default function Hero() {
       </div>
 
       {/* Hero project marquee — very slow drift, large cards */}
-      <motion.div {...fade(0.65)} className="fade-x relative z-10 mt-16 overflow-hidden">
+      <div className="hero-rise fade-x relative z-10 mt-16 overflow-hidden" style={{ animationDelay: "0.65s" }}>
         <div className="flex w-max animate-marquee-slow gap-6 pr-6 hover:[animation-play-state:paused]">
           {marqueeCards.map((p, i) => (
             <div
@@ -142,7 +138,7 @@ export default function Hero() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

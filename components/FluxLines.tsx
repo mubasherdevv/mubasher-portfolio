@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import './FluxLines.css';
 
@@ -155,6 +155,53 @@ void main() {
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
+/** Static approximation of the fluid lines, used when the live WebGL effect
+    would be too expensive (software GL, low-end device, or
+    prefers-reduced-motion): same colours, same downward-flow feel, zero
+    per-frame cost — a one-time paint. */
+const STATIC_LINES = [
+  { left: '6%', height: '78%', rotate: -4, opacity: 0.55, color: 0 },
+  { left: '18%', height: '92%', rotate: 3, opacity: 0.4, color: 1 },
+  { left: '31%', height: '70%', rotate: -2, opacity: 0.5, color: 0 },
+  { left: '44%', height: '96%', rotate: 5, opacity: 0.35, color: 1 },
+  { left: '57%', height: '82%', rotate: -5, opacity: 0.5, color: 0 },
+  { left: '69%', height: '90%', rotate: 2, opacity: 0.4, color: 1 },
+  { left: '82%', height: '74%', rotate: -3, opacity: 0.55, color: 0 },
+  { left: '93%', height: '88%', rotate: 4, opacity: 0.35, color: 1 },
+];
+
+function StaticLines({ colors, opacity }: { colors: string[]; opacity: number }) {
+  const base = colors[0] ?? '#ffffff';
+  const accent = colors[1] ?? base;
+  return (
+    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+      {STATIC_LINES.map((l, i) => {
+        const c = l.color === 0 ? base : accent;
+        return (
+          <span
+            key={i}
+            className="absolute top-0 w-[2px] rounded-full"
+            style={{
+              left: l.left,
+              height: l.height,
+              transform: `rotate(${l.rotate}deg)`,
+              transformOrigin: 'top center',
+              background: `linear-gradient(to bottom, transparent, ${c} 35%, ${c} 65%, transparent)`,
+              opacity: l.opacity * opacity,
+              filter: 'blur(1px)',
+            }}
+          />
+        );
+      })}
+      {/* soft accent glow wash */}
+      <span
+        className="absolute inset-0"
+        style={{ background: `radial-gradient(60% 50% at 50% 40%, ${accent}22, transparent 70%)` }}
+      />
+    </div>
+  );
+}
+
 const compile = (gl: WebGL2RenderingContext, type: number, source: string) => {
   const shader = gl.createShader(type);
   if (!shader) return null;
@@ -252,6 +299,9 @@ const FluxLines = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wakeRef = useRef<(() => void) | null>(null);
+  // True when the live WebGL effect is replaced by the static fallback
+  // (software GL / low-end device / reduced motion) — see the gate below.
+  const [staticMode, setStaticMode] = useState(false);
   const settings = {
     colors: Array.isArray(colors) && colors.length ? colors.slice(0, MAX_COLORS) : ['#ffffff'],
     speed,
@@ -299,6 +349,24 @@ const FluxLines = ({
     if (!program) return undefined;
     const u = program.uniforms;
 
+    // Capability gate: a full-screen heavy fragment shader is far too
+    // expensive when there is no real GPU (software GL rasterises every
+    // fragment on the CPU — the TBT whale in the lab) or on low-end
+    // devices. Those get a static approximation of the same lines
+    // instead; capable GPUs keep the live effect unchanged.
+    const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+    const renderer = debugInfo ? String(gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) ?? '') : '';
+    const softwareRenderer = /swiftshader|llvmpipe|softpipe|software|basic render/i.test(renderer);
+    const lowEndDevice =
+      (navigator.hardwareConcurrency ?? 8) <= 4 ||
+      ((navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 8) <= 4;
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    if (softwareRenderer || lowEndDevice || reduce) {
+      setStaticMode(true);
+      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      return undefined;
+    }
+
     const buffer = gl.createBuffer();
     const vao = gl.createVertexArray();
     gl.bindVertexArray(vao);
@@ -327,7 +395,6 @@ const FluxLines = ({
     };
     const palette = new Float32Array(MAX_COLORS * 3);
 
-    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
     const pointer = { x: 0, y: 0, inside: false };
     const magnet = { x: 0, y: 0, active: 0 };
     const swirl = { x: 0, y: 0, age: 10 };
@@ -530,6 +597,7 @@ const FluxLines = ({
       {...rest}
     >
       <canvas ref={canvasRef} className="flux-lines-canvas" aria-hidden="true" />
+      {staticMode && <StaticLines colors={settings.colors} opacity={opacity} />}
     </div>
   );
 };

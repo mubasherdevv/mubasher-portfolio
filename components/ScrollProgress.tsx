@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { FiArrowUp } from "react-icons/fi";
 
@@ -16,9 +16,18 @@ export default function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
   const [show, setShow] = useState(false);
+  // Guard the setState: scroll fires constantly, and calling setState on
+  // every event (even when the value is unchanged) is wasted work.
+  const showRef = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 600);
+    const onScroll = () => {
+      const next = window.scrollY > 600;
+      if (next !== showRef.current) {
+        showRef.current = next;
+        setShow(next);
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);

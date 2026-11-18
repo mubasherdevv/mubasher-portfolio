@@ -103,3 +103,26 @@ section[id] {
   line-height: 2;
   padding-bottom: 0.35em;
 }
+
+/* Hero entrances — pure CSS so they run from first paint (the framer-motion
+   version only started after hydration, delaying the h1's paint / LCP).
+   Same 0.7s rise + per-element delay as before; opacity + transform only. */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-rise {
+  animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise {
+    animation: none;
+  }
+}

@@ -87,10 +87,18 @@ export default function Navbar() {
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
   const prevY = useRef(0);
+  // Guard the setState: scrollY changes on every scroll frame, and calling
+  // setHidden on each one (even when unchanged) is wasted work.
+  const hiddenRef = useRef(false);
   useMotionValueEvent(scrollY, "change", (y) => {
     const prev = prevY.current;
-    if (y > prev && y > 140) setHidden(true);
-    else if (y < prev) setHidden(false);
+    let next = hiddenRef.current;
+    if (y > prev && y > 140) next = true;
+    else if (y < prev) next = false;
+    if (next !== hiddenRef.current) {
+      hiddenRef.current = next;
+      setHidden(next);
+    }
     prevY.current = y;
   });
   return (

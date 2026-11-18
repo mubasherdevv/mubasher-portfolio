@@ -4,7 +4,15 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-inter" });
 const caveat = Caveat({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-caveat" });
-const urdu = Noto_Nastaliq_Urdu({ subsets: ["arabic"], weight: ["400", "700"], variable: "--font-urdu" });
+const urdu = Noto_Nastaliq_Urdu({
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  variable: "--font-urdu",
+  // display:block: the Urdu name paints only once the font is ready, so it
+  // never flashes in a fallback font and shifts (the preloader name is the
+  // worst case — a brief blank inside a loader is fine).
+  display: "block",
+});
 
 /** Runs before first paint: applies the saved theme (localStorage
     "mubasher-theme") or the OS preference, so there is no light-flash. */
@@ -26,9 +34,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* The contribution graph image loads from here (below the fold,
-            lazy) — preconnect so the handshake is done when it is needed. */}
-        <link rel="preconnect" href="https://ghchart.rshah.org" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className={`${inter.variable} ${caveat.variable} ${urdu.variable} font-sans dark:bg-[#0a0a0a] dark:text-[#f5f5f5]`}>{children}</body>
