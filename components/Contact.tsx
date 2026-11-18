@@ -206,7 +206,7 @@ export default function Contact() {
                             This site has no booking backend — confirming here just prepares your email. Send it to lock the time in.
                           </p>
                           <a href={mailtoCall} className="mt-3 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-bold text-ink">
-                            Email Mubasher to book →
+                            Email <span className="font-urdu">محمد مبشر</span> to book →
                           </a>
                         </div>
                       )}

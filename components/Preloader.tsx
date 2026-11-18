@@ -66,8 +66,8 @@ export default function Preloader() {
                 )
               )}
               <span className="absolute -top-7 left-0 text-[12px] font-semibold text-[#4da3ff]">Hello</span>
-              <p className="whitespace-nowrap text-[38px] font-extrabold leading-none tracking-tight text-black sm:text-[56px] md:text-[64px]">
-                Hi, I&apos;m Mubasher.
+              <p className="font-urdu whitespace-nowrap text-[30px] leading-[1.9] tracking-tight text-black sm:text-[44px] md:text-[52px]">
+                محمد مبشر
               </p>
 
               {/* fake cursors */}
@@ -87,7 +87,7 @@ export default function Preloader() {
                 className="absolute -bottom-12 -left-8 hidden items-center gap-1 sm:flex"
               >
                 <span className="text-xl leading-none text-orange-400">➤</span>
-                <span className="rounded-full bg-orange-400 px-2.5 py-1 text-xs font-bold text-white">Mubasher</span>
+                <span className="font-urdu rounded-full bg-orange-400 px-2.5 py-1 text-xs font-bold text-white">محمد مبشر</span>
               </motion.span>
             </motion.div>
 

@@ -1,6 +1,8 @@
 // All site content lives here so text is easy to edit.
 // Every fact below comes from Muhammad Mubasher's CV — nothing invented:
 // no fake testimonials, clients, stats, or social links.
+// NOTE (2026-11-18, his request): the public contact email/phone are EXAMPLE
+// placeholders — his real email/phone were removed from the site on purpose.
 
 export const profile = {
   name: "محمد مبشر",
@@ -12,12 +14,14 @@ export const profile = {
     "Full-stack developer focused on building modern web applications and exploring agentic AI systems. Works with JavaScript/TypeScript, React, Next.js, Node.js, and Supabase, with hands-on experience in API integrations, workflow automation, and AI-assisted development. Interested in building practical AI agents and intelligent tools that connect models, APIs, and business workflows.",
   heroShort:
     "I build modern web apps and intelligent AI workflows — from idea to live product. React, Next.js, Node.js, Supabase and AI APIs, connected into tools that work for real businesses.",
-  email: "withm345@gmail.com",
+  email: "hello@example.com",
   phone: "+9200000000",
   phoneHref: "tel:+9200000000",
   location: "لاہور، پاکستان",
   timezone: "PKT (GMT+5)",
   linkedin: "https://www.linkedin.com/in/muhammad-mubasher2/",
+  github: "https://github.com/mubasherdevv",
+  youtube: "https://www.youtube.com/@mubasherdeveloper",
   cvHref: "/Muhammad_Mubasher_CV.pdf",
 };
 
@@ -200,7 +204,7 @@ export const faqs = [
   },
   {
     q: "How can I contact you?",
-    a: "You can reach me by email at withm345@gmail.com, by phone at +92 329 434 0393, through LinkedIn, or using the contact form on this site.",
+    a: "You can reach me by email at hello@example.com, by phone at +9200000000, through LinkedIn, or using the contact form on this site.",
   },
   {
     q: "What tools and technologies do you work with?",

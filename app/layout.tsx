@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Caveat } from "next/font/google";
+import { Inter, Caveat, Noto_Nastaliq_Urdu } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-inter" });
 const caveat = Caveat({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-caveat" });
+const urdu = Noto_Nastaliq_Urdu({ subsets: ["arabic"], weight: ["400", "700"], variable: "--font-urdu" });
 
 export const metadata: Metadata = {
   title: "محمد مبشر — Full-Stack Developer | Agentic AI Developer",
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${caveat.variable} font-sans`}>{children}</body>
+      <body className={`${inter.variable} ${caveat.variable} ${urdu.variable} font-sans`}>{children}</body>
     </html>
   );
 }

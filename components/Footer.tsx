@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import { profile } from "@/lib/data";
+import { SiGithub, SiYoutube } from "react-icons/si";
 
 export default function Footer() {
   return (
@@ -24,6 +25,24 @@ export default function Footer() {
                 >
                   in
                 </a>
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 bg-white text-ink transition hover:border-ink"
+                >
+                  <SiGithub size={18} />
+                </a>
+                <a
+                  href={profile.youtube}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="YouTube"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 bg-white text-ink transition hover:border-ink"
+                >
+                  <SiYoutube size={18} />
+                </a>
               </div>
             </div>
             <div className="text-left md:text-right">
@@ -37,17 +56,17 @@ export default function Footer() {
           </div>
 
           <div className="mt-10 border-t border-neutral-200 pt-5">
-            <p className="text-right text-sm text-neutral-500">© 2026 {profile.name}. All rights reserved</p>
+            <p className="text-right text-sm text-neutral-500">© 2026 <span className="font-urdu">{profile.name}</span>. All rights reserved</p>
           </div>
 
-          {/* Giant wordmark — clipped by overflow-hidden wrapper, letters never sliced by a divider */}
-          <div className="overflow-hidden pb-1 pt-6" aria-hidden="true">
-            <p className="wordmark select-none text-center font-extrabold tracking-tight" style={{ fontSize: "clamp(80px, 14vw, 180px)" }}>
-              Mubasher
+          {/* Giant wordmark — Urdu name in Nastaliq; tall line-height so glyphs never clip */}
+          <div className="overflow-hidden pb-6 pt-6" aria-hidden="true">
+            <p className="wordmark wordmark-urdu font-urdu select-none text-center font-bold tracking-tight" style={{ fontSize: "clamp(64px, 12vw, 150px)" }}>
+              محمد مبشر
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-between gap-2 py-4 text-xs text-neutral-500">
-            <span>Made with ♥ by Mubasher</span>
+            <span>Made with ♥ by <span className="font-urdu">محمد مبشر</span></span>
             <span>
               Thank you <span className="font-bold text-[#ff6b00]">For scrolling</span>
             </span>

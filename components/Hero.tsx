@@ -47,7 +47,7 @@ export default function Hero() {
           <span className="absolute bottom-0 right-0 h-5 w-5 rounded-full border-2 border-white bg-emerald-500" title="Available for work" />
         </motion.div>
         <motion.div {...fade(0.18)} className="relative z-10 -mt-3 flex justify-center">
-          <span className="rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-[0_6px_20px_rgba(0,0,0,0.10)] ring-1 ring-neutral-100">
+          <span className="font-urdu rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-[0_6px_20px_rgba(0,0,0,0.10)] ring-1 ring-neutral-100">
             محمد مبشر
           </span>
         </motion.div>

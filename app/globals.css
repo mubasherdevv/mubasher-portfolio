@@ -48,6 +48,11 @@ section[id] {
   cursor: none;
 }
 
+/* Urdu name rendering (Noto Nastaliq Urdu) — Nastaliq needs tall line-height */
+.font-urdu {
+  font-family: var(--font-urdu), "Noto Nastaliq Urdu", serif;
+}
+
 /* Giant footer wordmark — letters fade to white, never sliced */
 .wordmark {
   background: linear-gradient(180deg, #d6d6d6 0%, #e9e9e9 55%, #ffffff 100%);
@@ -55,4 +60,10 @@ section[id] {
   background-clip: text;
   color: transparent;
   line-height: 0.78;
+}
+
+/* Urdu wordmark needs Nastaliq's tall line-height or glyphs clip */
+.wordmark-urdu {
+  line-height: 2;
+  padding-bottom: 0.35em;
 }

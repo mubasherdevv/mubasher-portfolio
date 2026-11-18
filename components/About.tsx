@@ -70,7 +70,7 @@ export default function About() {
               <SiSupabase size={22} />
             </span>
             <span className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-2 text-sm font-bold text-ink shadow">
-              {profile.name}
+              <span className="font-urdu">{profile.name}</span>
             </span>
           </div>
         </Reveal>
@@ -78,7 +78,7 @@ export default function About() {
         <Reveal delay={0.1}>
           <div className="space-y-6 text-[16px] leading-[1.6] text-[#666]">
             <p>
-              <strong className="text-ink">I&apos;m {profile.name}, a Full-Stack Developer and Agentic AI Developer</strong> with a background in
+              <strong className="text-ink">I&apos;m <span className="font-urdu">{profile.name}</span>, a Full-Stack Developer and Agentic AI Developer</strong> with a background in
               engineering — bridging the gap between beautiful design and working products.
             </p>
             <p>
