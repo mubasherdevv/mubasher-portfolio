@@ -8,10 +8,11 @@ const urdu = Noto_Nastaliq_Urdu({
   subsets: ["arabic"],
   weight: ["400", "700"],
   variable: "--font-urdu",
-  // display:block: the Urdu name paints only once the font is ready, so it
-  // never flashes in a fallback font and shifts (the preloader name is the
-  // worst case — a brief blank inside a loader is fine).
-  display: "block",
+  // Default display:swap (NOT block). next/font already emits a
+  // metric-matched fallback (size-adjust), so the preloader name paints
+  // immediately in the fallback and swaps in — block made the LCP element
+  // wait ~1s for the Nastaliq woff2 on Slow 4G. The name <p> has a fixed
+  // height, so the swap cannot shift its rect (CLS stays 0).
 });
 
 /** Runs before first paint: applies the saved theme (localStorage

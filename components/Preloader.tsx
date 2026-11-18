@@ -90,12 +90,13 @@ export default function Preloader() {
 
           {phase === "count" ? (
             <div className="relative flex flex-col items-center">
-              <motion.div
+              {/* CSS entrance (see .preloader-enter in globals.css): runs
+                  from first paint instead of waiting for hydration, so the
+                  name paints / LCP starts immediately. Plain div, not
+                  motion — the expand FLIP phase still uses framer-motion. */}
+              <div
                 ref={boxRef}
-                initial={{ scale: 0.96, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="relative flex items-center justify-center border-2 border-[#4da3ff] bg-white/60 px-6 py-8 sm:px-10 dark:bg-[#161616]/80"
+                className="preloader-enter relative flex items-center justify-center border-2 border-[#4da3ff] bg-white/60 px-6 py-8 sm:px-10 dark:bg-[#161616]/80"
                 style={{ width: "min(635px, 88vw)", height: 130 }}
               >
                 {/* corner + midpoint handles */}
@@ -103,7 +104,7 @@ export default function Preloader() {
                   <span key={pos} className={`absolute ${pos} h-3 w-3 rounded-[3px] border-2 border-[#4da3ff] bg-white dark:bg-[#161616]`} />
                 ))}
                 <span className="absolute -top-7 left-0 text-[12px] font-semibold text-[#4da3ff]">Hello</span>
-                <p className="font-urdu whitespace-nowrap text-[30px] leading-[1.9] tracking-tight text-black dark:text-[#f5f5f5] sm:text-[44px] md:text-[52px]">
+                <p className="font-urdu flex h-[96px] items-center justify-center whitespace-nowrap text-[30px] leading-[1.9] tracking-tight text-black dark:text-[#f5f5f5] sm:h-[110px] sm:text-[44px] md:h-[118px] md:text-[52px]">
                   محمد مبشر
                 </p>
 
@@ -126,7 +127,7 @@ export default function Preloader() {
                   <span className="text-xl leading-none text-orange-400">➤</span>
                   <span className="font-urdu rounded-full bg-orange-400 px-2.5 py-1 text-xs font-bold text-white">محمد مبشر</span>
                 </motion.span>
-              </motion.div>
+              </div>
 
               <motion.span
                 initial={{ opacity: 0, y: 8 }}
