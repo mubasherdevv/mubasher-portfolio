@@ -58,7 +58,7 @@ export default function Contact() {
   const mailtoCall = `mailto:${profile.email}?subject=${encodeURIComponent(
     `Intro call request — ${dateLabel} at ${selectedTime ?? ""} PKT`
   )}&body=${encodeURIComponent(
-    `Hi Mubasher,\n\nI'd like to book a 30-min intro call on ${dateLabel} at ${selectedTime} PKT (Google Meet or Zoom).\n\nThanks!`
+    `Hi محمد مبشر,\n\nI'd like to book a 30-min intro call on ${dateLabel} at ${selectedTime} PKT (Google Meet or Zoom).\n\nThanks!`
   )}`;
   const mailtoMessage = `mailto:${profile.email}?subject=${encodeURIComponent(
     `Message from ${name || "your portfolio"}`
