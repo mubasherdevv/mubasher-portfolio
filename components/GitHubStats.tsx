@@ -11,6 +11,7 @@ type Stats = {
   repos: number;
   stars: number;
   commits: number;
+  contributions: number;
   langs: { name: string; count: number; color: string }[];
   since: string;
 };
@@ -18,7 +19,8 @@ type Stats = {
 const FALLBACK: Stats = {
   repos: 41,
   stars: 4,
-  commits: 886,
+  commits: 887,
+  contributions: 1491,
   langs: [
     { name: "TypeScript", count: 9, color: "#3178C6" },
     { name: "JavaScript", count: 6, color: "#F7DF1E" },
@@ -36,8 +38,25 @@ const LANG_COLORS: Record<string, string> = {
 };
 
 async function getStats(): Promise<Stats> {
-  // Total commits (last year) comes from the readme-stats service, which
-  // reads GitHub's contribution data — the public REST API has no such total.
+  // Total CONTRIBUTIONS (what github.com/mubasherdevv shows: "1,491
+  // contributions in the last year") comes from GitHub's public
+  // contributions page — commits + PRs + issues + reviews. The public
+  // REST API has no such total, so we read the number from that page.
+  let contributions = FALLBACK.contributions;
+  try {
+    const html = await (
+      await fetch("https://github.com/users/mubasherdevv/contributions", {
+        next: { revalidate: 86400 },
+        headers: { "User-Agent": "mubasher-portfolio/1.0" },
+      })
+    ).text();
+    const m = html.match(/([\d,]+)\s*contributions\s*in the last year/);
+    if (m) contributions = parseInt(m[1].replace(/,/g, ""), 10);
+  } catch {
+    // keep the verified fallback
+  }
+  // Total COMMITS (last year) comes from the readme-stats service, which
+  // reads GitHub's contribution data — shown as the "including X commits" line.
   let commits = FALLBACK.commits;
   try {
     const svg = await (await fetch("https://github-readme-stats.vercel.app/api?username=mubasherdevv", { next: { revalidate: 86400 } })).text();
@@ -51,7 +70,7 @@ async function getStats(): Promise<Stats> {
       fetch("https://api.github.com/users/mubasherdevv", { next: { revalidate: 86400 } }),
       fetch("https://api.github.com/users/mubasherdevv/repos?per_page=100", { next: { revalidate: 86400 } }),
     ]);
-    if (!userRes.ok || !reposRes.ok) return { ...FALLBACK, commits };
+    if (!userRes.ok || !reposRes.ok) return { ...FALLBACK, commits, contributions };
     const user = await userRes.json();
     const repos: { language: string | null; stargazers_count: number; fork: boolean }[] =
       await reposRes.json();
@@ -68,11 +87,12 @@ async function getStats(): Promise<Stats> {
       repos: user.public_repos ?? FALLBACK.repos,
       stars,
       commits,
+      contributions,
       langs: langs.length ? langs : FALLBACK.langs,
       since: user.created_at ? new Date(user.created_at).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : FALLBACK.since,
     };
   } catch {
-    return { ...FALLBACK, commits };
+    return { ...FALLBACK, commits, contributions };
   }
 }
 
@@ -148,8 +168,9 @@ export default async function GitHubStats() {
                 <p className="mt-1 text-sm text-[#666]">Public commits and pull requests, last 12 months.</p>
               </div>
               <div className="text-right">
-                <p className="text-[28px] font-bold leading-none text-ink">{stats.commits.toLocaleString()}</p>
-                <p className="mt-1 text-sm font-medium text-[#666]">total commits (last year)</p>
+                <p className="text-[28px] font-bold leading-none text-ink">{stats.contributions.toLocaleString()}</p>
+                <p className="mt-1 text-sm font-medium text-[#666]">total contributions (last year)</p>
+                <p className="mt-0.5 text-xs text-[#999]">including {stats.commits.toLocaleString()} commits</p>
               </div>
             </div>
             <div className="mt-3 overflow-x-auto rounded-[16px] border border-line bg-white p-4">
