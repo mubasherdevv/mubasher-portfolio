@@ -10,6 +10,7 @@ import { SiGithub } from "react-icons/si";
 type Stats = {
   repos: number;
   stars: number;
+  commits: number;
   langs: { name: string; count: number; color: string }[];
   since: string;
 };
@@ -17,6 +18,7 @@ type Stats = {
 const FALLBACK: Stats = {
   repos: 41,
   stars: 4,
+  commits: 886,
   langs: [
     { name: "TypeScript", count: 9, color: "#3178C6" },
     { name: "JavaScript", count: 6, color: "#F7DF1E" },
@@ -34,12 +36,22 @@ const LANG_COLORS: Record<string, string> = {
 };
 
 async function getStats(): Promise<Stats> {
+  // Total commits (last year) comes from the readme-stats service, which
+  // reads GitHub's contribution data — the public REST API has no such total.
+  let commits = FALLBACK.commits;
+  try {
+    const svg = await (await fetch("https://github-readme-stats.vercel.app/api?username=mubasherdevv", { next: { revalidate: 86400 } })).text();
+    const m = svg.match(/Total Commits\s*\(last year\)\s*:\s*([\d,]+)/);
+    if (m) commits = parseInt(m[1].replace(/,/g, ""), 10);
+  } catch {
+    // keep the verified fallback
+  }
   try {
     const [userRes, reposRes] = await Promise.all([
       fetch("https://api.github.com/users/mubasherdevv", { next: { revalidate: 86400 } }),
       fetch("https://api.github.com/users/mubasherdevv/repos?per_page=100", { next: { revalidate: 86400 } }),
     ]);
-    if (!userRes.ok || !reposRes.ok) return FALLBACK;
+    if (!userRes.ok || !reposRes.ok) return { ...FALLBACK, commits };
     const user = await userRes.json();
     const repos: { language: string | null; stargazers_count: number; fork: boolean }[] =
       await reposRes.json();
@@ -55,11 +67,12 @@ async function getStats(): Promise<Stats> {
     return {
       repos: user.public_repos ?? FALLBACK.repos,
       stars,
+      commits,
       langs: langs.length ? langs : FALLBACK.langs,
       since: user.created_at ? new Date(user.created_at).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : FALLBACK.since,
     };
   } catch {
-    return FALLBACK;
+    return { ...FALLBACK, commits };
   }
 }
 
@@ -129,8 +142,16 @@ export default async function GitHubStats() {
 
           {/* Contribution graph — rendered from GitHub's public data */}
           <div className="mt-8">
-            <p className="text-sm font-bold text-ink">Contribution graph</p>
-            <p className="mt-1 text-sm text-[#666]">Public commits and pull requests, last 12 months.</p>
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p className="text-sm font-bold text-ink">Contribution graph</p>
+                <p className="mt-1 text-sm text-[#666]">Public commits and pull requests, last 12 months.</p>
+              </div>
+              <div className="text-right">
+                <p className="text-[28px] font-bold leading-none text-ink">{stats.commits.toLocaleString()}</p>
+                <p className="mt-1 text-sm font-medium text-[#666]">total commits (last year)</p>
+              </div>
+            </div>
             <div className="mt-3 overflow-x-auto rounded-[16px] border border-line bg-white p-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
