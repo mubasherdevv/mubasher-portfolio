@@ -351,17 +351,19 @@ const FluxLines = ({
 
     // Capability gate: a full-screen heavy fragment shader is far too
     // expensive when there is no real GPU (software GL rasterises every
-    // fragment on the CPU — the TBT whale in the lab) or on low-end
-    // devices. Those get a static approximation of the same lines
-    // instead; capable GPUs keep the live effect unchanged.
+    // fragment on the CPU — the TBT whale in the lab). Those get a static
+    // approximation of the same lines instead; real GPUs keep the live
+    // effect unchanged.
+    // NOTE: do NOT gate on hardwareConcurrency/deviceMemory — most real
+    // phones report deviceMemory 4 and were wrongly forced static (the
+    // live effect ran fine on them before this gate). The software-GL
+    // check already covers the lab (SwiftShader); real GPUs handle the
+    // effect at the 30fps / DPR 1.5 caps.
     const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
     const renderer = debugInfo ? String(gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) ?? '') : '';
     const softwareRenderer = /swiftshader|llvmpipe|softpipe|software|basic render/i.test(renderer);
-    const lowEndDevice =
-      (navigator.hardwareConcurrency ?? 8) <= 4 ||
-      ((navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 8) <= 4;
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
-    if (softwareRenderer || lowEndDevice || reduce) {
+    if (softwareRenderer || reduce) {
       setStaticMode(true);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
       return undefined;
@@ -596,7 +598,12 @@ const FluxLines = ({
       style={mixBlendMode ? { ...style, mixBlendMode } : style}
       {...rest}
     >
-      <canvas ref={canvasRef} className="flux-lines-canvas" aria-hidden="true" />
+      {/* The canvas is only rendered for the live effect. In static mode
+          it is left out entirely: a mounted canvas whose GL context was
+          created and then lost (the static path) presented as an opaque
+          white layer in Chromium, which kept the hero white in dark mode
+          while the rest of the page went dark. */}
+      {!staticMode && <canvas ref={canvasRef} className="flux-lines-canvas" aria-hidden="true" />}
       {staticMode && <StaticLines colors={settings.colors} opacity={opacity} />}
     </div>
   );
