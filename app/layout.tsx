@@ -6,11 +6,11 @@ const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "
 const caveat = Caveat({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-caveat" });
 
 export const metadata: Metadata = {
-  title: "Muhammad Mubasher — Full-Stack Developer | Agentic AI Developer",
+  title: "محمد مبشر — Full-Stack Developer | Agentic AI Developer",
   description:
     "Full-stack developer focused on building modern web applications and exploring agentic AI systems. React, Next.js, TypeScript, Node.js, Supabase, OpenAI & Gemini APIs, n8n automation.",
   openGraph: {
-    title: "Muhammad Mubasher — Full-Stack Developer | Agentic AI Developer",
+    title: "محمد مبشر — Full-Stack Developer | Agentic AI Developer",
     description:
       "Building modern web apps and intelligent AI workflows — from idea to live product.",
     type: "website",
