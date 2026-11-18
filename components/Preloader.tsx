@@ -33,7 +33,7 @@ export default function Preloader() {
     <AnimatePresence>
       {phase !== "done" && (
         <motion.div
-          className="dot-grid fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-white"
+          className="dot-grid fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-white dark:bg-[#0a0a0a]"
           exit={{ opacity: 0, transition: { duration: 0.5 } }}
           aria-hidden="true"
         >
@@ -56,17 +56,17 @@ export default function Preloader() {
                   : { scale: 1, opacity: 1 }
               }
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="relative flex items-center justify-center border-2 border-[#4da3ff] bg-white/60 px-6 py-8 sm:px-10"
+              className="relative flex items-center justify-center border-2 border-[#4da3ff] bg-white/60 px-6 py-8 sm:px-10 dark:bg-[#161616]/80"
               style={{ width: "min(635px, 88vw)", height: 130 }}
             >
               {/* corner + midpoint handles */}
               {["-left-1.5 -top-1.5", "left-1/2 -top-1.5 -translate-x-1/2", "-right-1.5 -top-1.5", "-left-1.5 top-1/2 -translate-y-1/2", "-right-1.5 top-1/2 -translate-y-1/2", "-left-1.5 -bottom-1.5", "left-1/2 -bottom-1.5 -translate-x-1/2", "-right-1.5 -bottom-1.5"].map(
                 (pos) => (
-                  <span key={pos} className={`absolute ${pos} h-3 w-3 rounded-[3px] border-2 border-[#4da3ff] bg-white`} />
+                  <span key={pos} className={`absolute ${pos} h-3 w-3 rounded-[3px] border-2 border-[#4da3ff] bg-white dark:bg-[#161616]`} />
                 )
               )}
               <span className="absolute -top-7 left-0 text-[12px] font-semibold text-[#4da3ff]">Hello</span>
-              <p className="font-urdu whitespace-nowrap text-[30px] leading-[1.9] tracking-tight text-black sm:text-[44px] md:text-[52px]">
+              <p className="font-urdu whitespace-nowrap text-[30px] leading-[1.9] tracking-tight text-black dark:text-[#f5f5f5] sm:text-[44px] md:text-[52px]">
                 محمد مبشر
               </p>
 

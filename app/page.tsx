@@ -16,11 +16,13 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import CursorDot from "@/components/CursorDot";
+import ScrollProgress from "@/components/ScrollProgress";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-ink">
+    <main className="min-h-screen bg-white text-ink dark:bg-[#0a0a0a] dark:text-[#f5f5f5]">
       <CursorDot />
+      <ScrollProgress />
       <Preloader />
       <Navbar />
       <Hero />
@@ -40,16 +42,16 @@ export default function Home() {
       <section className="mx-auto max-w-4xl px-4 py-16 text-center">
         <Reveal>
           <p className="text-[40px] font-bold leading-tight tracking-tight">
-            <span className="text-[#111]">Great things in Business</span>
+            <span className="text-[#111] dark:text-[#f5f5f5]">Great things in Business</span>
             <br />
-            <span className="text-[#cfcfcf]">are never done by one person.</span>
+            <span className="text-[#cfcfcf] dark:text-[#555]">are never done by one person.</span>
             <br />
-            <span className="text-[#111]">They&apos;re done by a skilled</span>
+            <span className="text-[#111] dark:text-[#f5f5f5]">They&apos;re done by a skilled</span>
             <br />
-            <span className="text-[#cfcfcf]">Team of people.</span>
+            <span className="text-[#cfcfcf] dark:text-[#555]">Team of people.</span>
           </p>
-          <p className="mt-4 text-sm font-medium text-neutral-500">~ Steve Jobs</p>
-          <a href="#contact" className="mt-6 inline-block text-base font-bold text-ink underline decoration-[#ff6b00] decoration-2 underline-offset-8 hover:text-[#ff6b00]">
+          <p className="mt-4 text-sm font-medium text-neutral-500 dark:text-neutral-400">~ Steve Jobs</p>
+          <a href="#contact" className="mt-6 inline-block text-base font-bold text-ink underline dark:text-[#f5f5f5] decoration-[#ff6b00] decoration-2 underline-offset-8 hover:text-[#ff6b00]">
             Let&apos;s Collaborate --&gt;
           </a>
         </Reveal>

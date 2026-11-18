@@ -18,7 +18,7 @@ function ProjectCard({ p }: { p: (typeof projects)[number] }) {
   return (
     <div
       ref={ref}
-      className="view-cursor group flex h-full flex-col overflow-hidden rounded-[24px] border border-line bg-white shadow-sm transition hover:shadow-xl"
+      className="view-cursor group flex h-full flex-col overflow-hidden rounded-[24px] border border-line bg-white shadow-sm transition hover:shadow-xl dark:border-[#262626] dark:bg-[#161616]"
       onMouseEnter={() => {
         setHover(true);
         setCursorView(true);
@@ -39,11 +39,11 @@ function ProjectCard({ p }: { p: (typeof projects)[number] }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="text-[21px] font-bold text-ink">{p.title}</h3>
-        <p className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#666]">{p.description}</p>
+        <h3 className="text-[21px] font-bold text-ink dark:text-[#f5f5f5]">{p.title}</h3>
+        <p className="mt-1.5 flex-1 text-[15px] leading-relaxed text-[#666] dark:text-[#a3a3a3]">{p.description}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {p.tags.map((t) => (
-            <span key={t} className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-[12px] font-medium text-neutral-600">
+            <span key={t} className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-[12px] font-medium text-neutral-600 dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400">
               {t}
             </span>
           ))}
@@ -64,13 +64,13 @@ export default function Projects() {
         <div className="mt-5">
           <SectionHeading dark="Selected" pale="Work" />
         </div>
-        <div className="mx-auto mt-8 flex h-12 w-fit items-center gap-3 rounded-full bg-neutral-100 px-2">
+        <div className="mx-auto mt-8 flex h-12 w-fit items-center gap-3 rounded-full bg-neutral-100 px-2 dark:bg-[#1a1a1a]">
           {projectFilters.map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
               className={`rounded-full px-4 py-2 text-[13px] font-semibold transition ${
-                filter === f ? "bg-white text-ink shadow" : "text-neutral-600 hover:text-ink"
+                filter === f ? "bg-white text-ink shadow dark:bg-[#262626] dark:text-[#f5f5f5]" : "text-neutral-600 hover:text-ink dark:text-neutral-400 dark:hover:text-[#f5f5f5]"
               }`}
             >
               {f}
@@ -86,7 +86,7 @@ export default function Projects() {
         ))}
       </div>
       <Reveal className="mt-10 text-center">
-        <a href="#contact" className="text-[15px] font-semibold text-ink underline decoration-[#ff6b00] decoration-2 underline-offset-8 hover:text-[#ff6b00]">
+        <a href="#contact" className="text-[15px] font-semibold text-ink underline decoration-[#ff6b00] dark:text-[#f5f5f5] decoration-2 underline-offset-8 hover:text-[#ff6b00]">
           View all projects →
         </a>
       </Reveal>

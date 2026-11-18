@@ -24,7 +24,7 @@ function FloatPill({
 }) {
   return (
     <span
-      className={`absolute hidden items-center gap-1.5 rounded-full border border-neutral-200/80 bg-white px-3.5 py-2 text-[13px] font-semibold shadow-[0_6px_20px_rgba(0,0,0,0.08)] lg:flex ${className}`}
+      className={`absolute hidden items-center gap-1.5 rounded-full border border-neutral-200/80 bg-white px-3.5 py-2 text-[13px] dark:border-[#262626]/80 dark:bg-[#161616] font-semibold shadow-[0_6px_20px_rgba(0,0,0,0.08)] lg:flex ${className}`}
       style={{ color }}
     >
       <svg width="11" height="11" viewBox="0 0 12 12" fill={color} aria-hidden="true">
@@ -41,45 +41,45 @@ export default function Hero() {
       <div className="relative mx-auto max-w-[1180px] px-4 text-center">
         {/* Monogram avatar (pure CSS — no photo) + "محمد مبشر" pill */}
         <motion.div {...fade(0.1)} className="relative mx-auto h-[100px] w-[100px]">
-          <div className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-gradient-to-br from-[#ff6b00] via-[#f43f5e] to-[#7c3aed] text-[44px] font-extrabold text-white shadow-lg ring-4 ring-white">
+          <div className="flex h-[100px] w-[100px] items-center justify-center rounded-full bg-gradient-to-br from-[#ff6b00] via-[#f43f5e] to-[#7c3aed] text-[44px] font-extrabold text-white shadow-lg ring-4 ring-white dark:ring-[#161616]">
             M
           </div>
-          <span className="absolute bottom-0 right-0 h-5 w-5 rounded-full border-2 border-white bg-emerald-500" title="Available for work" />
+          <span className="absolute bottom-0 right-0 h-5 w-5 rounded-full border-2 border-white bg-emerald-500 dark:border-[#0a0a0a]" title="Available for work" />
         </motion.div>
         <motion.div {...fade(0.18)} className="relative z-10 -mt-3 flex justify-center">
-          <span className="font-urdu rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-[0_6px_20px_rgba(0,0,0,0.10)] ring-1 ring-neutral-100">
+          <span className="font-urdu rounded-full bg-white px-4 py-2 text-sm font-medium text-neutral-700 shadow-[0_6px_20px_rgba(0,0,0,0.10)] ring-1 ring-neutral-100 dark:bg-[#161616] dark:text-neutral-300 dark:ring-[#262626]">
             محمد مبشر
           </span>
         </motion.div>
 
         <motion.h1
           {...fade(0.3)}
-          className="mx-auto mt-6 max-w-[700px] text-[52px] font-bold leading-[1.05] tracking-tight text-[#111] sm:text-[56px]"
+          className="mx-auto mt-6 max-w-[700px] text-[52px] font-bold leading-[1.05] tracking-tight text-[#111] dark:text-[#f5f5f5] sm:text-[56px]"
         >
           I&apos;m a Full-Stack Developer and Agentic AI Developer.
         </motion.h1>
 
-        <motion.p {...fade(0.45)} className="mx-auto mt-5 max-w-[560px] text-[17px] leading-relaxed text-[#666]">
+        <motion.p {...fade(0.45)} className="mx-auto mt-5 max-w-[560px] text-[17px] leading-relaxed text-[#666] dark:text-[#a3a3a3]">
           {profile.heroShort}
         </motion.p>
 
         <motion.div {...fade(0.55)} className="relative mx-auto mt-9 flex flex-wrap items-center justify-center gap-4">
           {/* Handwritten note + curved arrow, left of the buttons */}
           <span className="pointer-events-none absolute -left-2 -top-12 hidden rotate-[-8deg] items-end gap-1 md:flex lg:left-6">
-            <span className="font-hand text-[28px] font-semibold leading-none text-neutral-700">Lets Chat!</span>
-            <svg width="46" height="34" viewBox="0 0 46 34" fill="none" aria-hidden="true" className="mb-1 -ml-1">
-              <path d="M4 4 C 18 22, 30 26, 42 12" stroke="#111" strokeWidth="1.6" strokeLinecap="round" />
-              <path d="M42 12 l-7 -1 M42 12 l-1 7" stroke="#111" strokeWidth="1.6" strokeLinecap="round" />
+            <span className="font-hand text-[28px] font-semibold leading-none text-neutral-700 dark:text-neutral-300">Lets Chat!</span>
+            <svg width="46" height="34" viewBox="0 0 46 34" fill="none" aria-hidden="true" className="mb-1 -ml-1 text-[#111] dark:text-[#f5f5f5]">
+              <path d="M4 4 C 18 22, 30 26, 42 12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              <path d="M42 12 l-7 -1 M42 12 l-1 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
             </svg>
           </span>
-          <a href="#contact" className="flex h-12 w-[150px] items-center justify-center rounded-full bg-[#111] text-sm font-semibold text-white shadow-lg transition hover:bg-neutral-800">
+          <a href="#contact" className="flex h-12 w-[150px] items-center justify-center rounded-full bg-[#111] text-sm font-semibold text-white shadow-lg transition hover:bg-neutral-800 dark:bg-[#f5f5f5] dark:text-[#111] dark:hover:bg-white">
             Contact me
           </a>
           <a
             href={profile.cvHref}
             target="_blank"
             rel="noreferrer"
-            className="flex h-12 w-[150px] items-center justify-center rounded-full bg-[#f3f3f3] text-sm font-semibold text-[#111] transition hover:bg-neutral-200"
+            className="flex h-12 w-[150px] items-center justify-center rounded-full bg-[#f3f3f3] text-sm font-semibold text-[#111] transition hover:bg-neutral-200 dark:bg-[#1a1a1a] dark:text-[#f5f5f5] dark:hover:bg-[#262626]"
           >
             View my CV
           </a>

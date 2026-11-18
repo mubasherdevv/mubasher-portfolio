@@ -6,6 +6,7 @@ import {
   SiGithub, SiJavascript, SiNextdotjs, SiNodedotjs, SiReact,
   SiSupabase, SiTailwindcss, SiTypescript,
 } from "react-icons/si";
+import type { CSSProperties } from "react";
 import type { IconType } from "react-icons";
 
 /**
@@ -16,20 +17,23 @@ import type { IconType } from "react-icons";
  * (inset ~24%). Heading is two lines exactly like Twambi's.
  * Icons fade+rise per row (top first), then stay completely static.
  */
-const rows: { left: { Icon: IconType; color: string; name: string }; right: { Icon: IconType; color: string; name: string }; inset: boolean }[] = [
-  { left: { Icon: SiReact, color: "#61DAFB", name: "React" }, right: { Icon: SiNextdotjs, color: "#000000", name: "Next.js" }, inset: true },
+const rows: { left: { Icon: IconType; color: string; darkColor?: string; name: string }; right: { Icon: IconType; color: string; darkColor?: string; name: string }; inset: boolean }[] = [
+  { left: { Icon: SiReact, color: "#61DAFB", name: "React" }, right: { Icon: SiNextdotjs, color: "#000000", darkColor: "#f5f5f5", name: "Next.js" }, inset: true },
   { left: { Icon: SiTypescript, color: "#3178C6", name: "TypeScript" }, right: { Icon: SiJavascript, color: "#F7DF1E", name: "JavaScript" }, inset: false },
   { left: { Icon: SiTailwindcss, color: "#06B6D4", name: "Tailwind CSS" }, right: { Icon: SiNodedotjs, color: "#339933", name: "Node.js" }, inset: false },
-  { left: { Icon: SiSupabase, color: "#3ECF8E", name: "Supabase" }, right: { Icon: SiGithub, color: "#181717", name: "GitHub" }, inset: true },
+  { left: { Icon: SiSupabase, color: "#3ECF8E", name: "Supabase" }, right: { Icon: SiGithub, color: "#181717", darkColor: "#f5f5f5", name: "GitHub" }, inset: true },
 ];
 
-function ToolTile({ Icon, color, name }: { Icon: IconType; color: string; name: string }) {
+/** Brand icon in a tile. Icon colour comes from CSS vars so black icons
+    (Next.js, GitHub) flip to near-white in dark mode instead of vanishing. */
+function ToolTile({ Icon, color, darkColor, name }: { Icon: IconType; color: string; darkColor?: string; name: string }) {
   return (
     <span
       title={name}
-      className="flex h-[54px] w-[54px] items-center justify-center rounded-2xl border border-line bg-white shadow-[0_8px_24px_rgba(0,0,0,0.07)]"
+      className="flex h-[54px] w-[54px] items-center justify-center rounded-2xl border border-line bg-white text-[var(--ic)] shadow-[0_8px_24px_rgba(0,0,0,0.07)] dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[var(--ic-dark)]"
+      style={{ "--ic": color, "--ic-dark": darkColor ?? color } as CSSProperties}
     >
-      <Icon size={32} color={color} />
+      <Icon size={32} />
     </span>
   );
 }
@@ -57,12 +61,12 @@ export default function Tools() {
             "to Bring Ideas to Life" (only "Ideas to Life" pale). */}
         <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
           <Reveal>
-            <h2 className="text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl">
+            <h2 className="text-4xl font-bold leading-[1.08] tracking-tight text-ink dark:text-[#f5f5f5] sm:text-5xl">
               A Collection of Tools I Use
               <br />
-              to Bring <span className="text-[#cfcfcf]">Ideas to Life</span>
+              to Bring <span className="text-[#cfcfcf] dark:text-[#555]">Ideas to Life</span>
             </h2>
-            <p className="mt-4 text-[15px] text-[#666]">Designing &amp; Crafting — The Tools That Bring Ideas to Life</p>
+            <p className="mt-4 text-[15px] text-[#666] dark:text-[#a3a3a3]">Designing &amp; Crafting — The Tools That Bring Ideas to Life</p>
           </Reveal>
         </div>
       </div>

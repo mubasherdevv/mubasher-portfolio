@@ -44,7 +44,7 @@ export default function CursorDot() {
 
   return (
     <motion.div
-      className="pointer-events-none fixed left-0 top-0 z-[100] hidden items-center justify-center rounded-full bg-[#1e1b4b] text-white md:flex"
+      className="pointer-events-none fixed left-0 top-0 z-[100] hidden items-center justify-center rounded-full bg-[#1e1b4b] text-white ring-1 ring-white/30 md:flex"
       style={{ transform }}
       animate={{
         width: viewing ? 64 : 11,

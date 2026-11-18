@@ -104,56 +104,56 @@ export default async function GitHubStats() {
     <section className="mx-auto max-w-[1180px] px-4 py-16">
       <Reveal>
         <SectionLabel>GitHub</SectionLabel>
-        <h2 className="mt-4 text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl">
-          Code, <span className="text-[#cfcfcf]">in public</span>
+        <h2 className="mt-4 text-4xl font-bold leading-[1.08] tracking-tight text-ink dark:text-[#f5f5f5] sm:text-5xl">
+          Code, <span className="text-[#cfcfcf] dark:text-[#555]">in public</span>
         </h2>
-        <p className="mt-3 max-w-[560px] text-[16px] leading-relaxed text-[#666]">
+        <p className="mt-3 max-w-[560px] text-[16px] leading-relaxed text-[#666] dark:text-[#a3a3a3]">
           Everything I build lands on GitHub — open source, experiments and client work.
         </p>
       </Reveal>
 
       <Reveal delay={0.08}>
-        <div className="mt-10 rounded-[24px] border border-line bg-white p-6 shadow-sm sm:p-8">
+        <div className="mt-10 rounded-[24px] border border-line bg-white p-6 shadow-sm sm:p-8 dark:border-[#262626] dark:bg-[#161616]">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#111] text-white">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#111] text-white dark:bg-[#f5f5f5] dark:text-[#111]">
                 <SiGithub size={24} />
               </span>
               <div>
-                <p className="text-[18px] font-bold text-ink">@mubasherdevv</p>
-                <p className="text-sm text-[#666]">GitHub member since {stats.since}</p>
+                <p className="text-[18px] font-bold text-ink dark:text-[#f5f5f5]">@mubasherdevv</p>
+                <p className="text-sm text-[#666] dark:text-[#a3a3a3]">GitHub member since {stats.since}</p>
               </div>
             </div>
             <a
               href="https://github.com/mubasherdevv"
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-[#111] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-black"
+              className="rounded-full bg-[#111] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-black dark:bg-[#f5f5f5] dark:text-[#111] dark:hover:bg-white"
             >
               View GitHub Profile →
             </a>
           </div>
 
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
-            <div className="rounded-[16px] bg-[#f7f7f7] p-5">
-              <p className="text-[36px] font-bold leading-none text-ink">{stats.repos}</p>
-              <p className="mt-2 text-sm font-medium text-[#666]">Public repositories</p>
+            <div className="rounded-[16px] bg-[#f7f7f7] p-5 dark:bg-[#1a1a1a]">
+              <p className="text-[36px] font-bold leading-none text-ink dark:text-[#f5f5f5]">{stats.repos}</p>
+              <p className="mt-2 text-sm font-medium text-[#666] dark:text-[#a3a3a3]">Public repositories</p>
             </div>
-            <div className="rounded-[16px] bg-[#f7f7f7] p-5">
-              <p className="text-[36px] font-bold leading-none text-ink">{stats.stars}</p>
-              <p className="mt-2 text-sm font-medium text-[#666]">Stars earned</p>
+            <div className="rounded-[16px] bg-[#f7f7f7] p-5 dark:bg-[#1a1a1a]">
+              <p className="text-[36px] font-bold leading-none text-ink dark:text-[#f5f5f5]">{stats.stars}</p>
+              <p className="mt-2 text-sm font-medium text-[#666] dark:text-[#a3a3a3]">Stars earned</p>
             </div>
-            <div className="col-span-2 rounded-[16px] bg-[#f7f7f7] p-5 sm:col-span-1">
-              <p className="text-sm font-bold text-ink">Top languages</p>
+            <div className="col-span-2 rounded-[16px] bg-[#f7f7f7] p-5 dark:bg-[#1a1a1a] sm:col-span-1">
+              <p className="text-sm font-bold text-ink dark:text-[#f5f5f5]">Top languages</p>
               <div className="mt-3 space-y-2">
                 {stats.langs.map((l) => (
                   <div key={l.name} className="flex items-center gap-2 text-sm">
                     <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: l.color }} />
-                    <span className="w-24 font-medium text-ink">{l.name}</span>
-                    <span className="h-2 flex-1 overflow-hidden rounded-full bg-[#e8e8e8]">
+                    <span className="w-24 font-medium text-ink dark:text-[#f5f5f5]">{l.name}</span>
+                    <span className="h-2 flex-1 overflow-hidden rounded-full bg-[#e8e8e8] dark:bg-[#262626]">
                       <span className="block h-full rounded-full" style={{ width: `${Math.round((l.count / maxLang) * 100)}%`, background: l.color }} />
                     </span>
-                    <span className="w-5 text-right text-[#666]">{l.count}</span>
+                    <span className="w-5 text-right text-[#666] dark:text-[#a3a3a3]">{l.count}</span>
                   </div>
                 ))}
               </div>
@@ -164,16 +164,16 @@ export default async function GitHubStats() {
           <div className="mt-8">
             <div className="flex flex-wrap items-end justify-between gap-3">
               <div>
-                <p className="text-sm font-bold text-ink">Contribution graph</p>
-                <p className="mt-1 text-sm text-[#666]">Public commits and pull requests, last 12 months.</p>
+                <p className="text-sm font-bold text-ink dark:text-[#f5f5f5]">Contribution graph</p>
+                <p className="mt-1 text-sm text-[#666] dark:text-[#a3a3a3]">Public commits and pull requests, last 12 months.</p>
               </div>
               <div className="text-right">
-                <p className="text-[28px] font-bold leading-none text-ink">{stats.contributions.toLocaleString()}</p>
-                <p className="mt-1 text-sm font-medium text-[#666]">total contributions (last year)</p>
+                <p className="text-[28px] font-bold leading-none text-ink dark:text-[#f5f5f5]">{stats.contributions.toLocaleString()}</p>
+                <p className="mt-1 text-sm font-medium text-[#666] dark:text-[#a3a3a3]">total contributions (last year)</p>
                 <p className="mt-0.5 text-xs text-[#999]">including {stats.commits.toLocaleString()} commits</p>
               </div>
             </div>
-            <div className="mt-3 overflow-x-auto rounded-[16px] border border-line bg-white p-4">
+            <div className="mt-3 overflow-x-auto rounded-[16px] border border-line bg-white p-4 dark:border-[#262626] dark:bg-white">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://ghchart.rshah.org/219653/mubasherdevv"

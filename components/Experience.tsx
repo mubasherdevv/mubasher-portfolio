@@ -21,23 +21,23 @@ function TimelineRow({
   description: string;
 }) {
   return (
-    <div className="flex flex-col gap-4 border-b border-line py-8 last:border-0 sm:flex-row sm:items-start sm:gap-6">
+    <div className="flex flex-col gap-4 border-b border-line py-8 last:border-0 dark:border-[#262626] sm:flex-row sm:items-start sm:gap-6">
       <div
-        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-line bg-white text-sm font-extrabold shadow-sm"
+        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-line bg-white text-sm font-extrabold shadow-sm dark:border-[#262626] dark:bg-[#1a1a1a]"
         style={{ color }}
       >
         {initials}
       </div>
       <div className="min-w-0 flex-1">
-        <h3 className="text-[17px] font-bold text-ink">
-          {title} <span className="font-semibold text-neutral-500">— {org}</span>
+        <h3 className="text-[17px] font-bold text-ink dark:text-[#f5f5f5]">
+          {title} <span className="font-semibold text-neutral-500 dark:text-neutral-400">— {org}</span>
         </h3>
-        <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[#666]">{description}</p>
+        <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[#666] dark:text-[#a3a3a3]">{description}</p>
       </div>
       <div className="shrink-0 text-left sm:w-40 sm:text-right">
-        {date ? <p className="text-sm text-neutral-500">{date}</p> : null}
-        {type && <p className="text-[15px] font-bold text-ink">{type}</p>}
-        <p className="text-[13px] text-neutral-500">{location}</p>
+        {date ? <p className="text-sm text-neutral-500 dark:text-neutral-400">{date}</p> : null}
+        {type && <p className="text-[15px] font-bold text-ink dark:text-[#f5f5f5]">{type}</p>}
+        <p className="text-[13px] text-neutral-500 dark:text-neutral-400">{location}</p>
       </div>
     </div>
   );

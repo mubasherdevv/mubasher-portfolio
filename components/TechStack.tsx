@@ -33,7 +33,7 @@ function Row({ items, reverse = false }: { items: string[]; reverse?: boolean })
         {doubled.map((t, i) => {
           const Icon = icons[t];
           return (
-            <span key={i} className="flex items-center gap-2.5 whitespace-nowrap text-[#b0b0b0]">
+            <span key={i} className="flex items-center gap-2.5 whitespace-nowrap text-[#b0b0b0] dark:text-[#8a8a8a]">
               {Icon && <Icon size={20} />}
               <span className="text-[17px] font-medium">{t}</span>
             </span>

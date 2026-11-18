@@ -1,31 +1,33 @@
 import Reveal from "./Reveal";
 import { whyChooseMe } from "@/lib/data";
 import { SiGithub, SiJavascript, SiNextdotjs, SiNodedotjs, SiReact, SiSupabase, SiTailwindcss, SiTypescript } from "react-icons/si";
+import type { CSSProperties } from "react";
 import type { IconType } from "react-icons";
 
-/** Popular Services tiles — colourful brand icons (4-column grid, 2 rows). */
-const serviceIcons: { Icon: IconType; color: string; name: string }[] = [
+/** Popular Services tiles — colourful brand icons (4-column grid, 2 rows).
+    Black icons (Next.js, GitHub) flip to near-white in dark mode. */
+const serviceIcons: { Icon: IconType; color: string; darkColor?: string; name: string }[] = [
   { Icon: SiReact, color: "#61DAFB", name: "React" },
-  { Icon: SiNextdotjs, color: "#000000", name: "Next.js" },
+  { Icon: SiNextdotjs, color: "#000000", darkColor: "#f5f5f5", name: "Next.js" },
   { Icon: SiTypescript, color: "#3178C6", name: "TypeScript" },
   { Icon: SiJavascript, color: "#F7DF1E", name: "JavaScript" },
   { Icon: SiTailwindcss, color: "#06B6D4", name: "Tailwind CSS" },
   { Icon: SiNodedotjs, color: "#339933", name: "Node.js" },
   { Icon: SiSupabase, color: "#3ECF8E", name: "Supabase" },
-  { Icon: SiGithub, color: "#181717", name: "GitHub" },
+  { Icon: SiGithub, color: "#181717", darkColor: "#f5f5f5", name: "GitHub" },
 ];
 
 function ClockArt() {
   return (
     <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true" className="mt-4">
-      <circle cx="60" cy="60" r="52" fill="white" stroke="#e8e8e8" strokeWidth="2" />
+      <circle cx="60" cy="60" r="52" strokeWidth="2" className="fill-white stroke-[#e8e8e8] dark:fill-[#1a1a1a] dark:stroke-[#262626]" />
       {Array.from({ length: 12 }).map((_, i) => {
         const a = (i * 30 * Math.PI) / 180;
         return <circle key={i} cx={60 + 44 * Math.sin(a)} cy={60 - 44 * Math.cos(a)} r={i % 3 === 0 ? 3 : 1.5} fill="#9ca3af" />;
       })}
       <line x1="60" y1="60" x2="60" y2="30" stroke="#ef4444" strokeWidth="4" strokeLinecap="round" />
-      <line x1="60" y1="60" x2="84" y2="66" stroke="#111" strokeWidth="4" strokeLinecap="round" />
-      <circle cx="60" cy="60" r="5" fill="#111" />
+      <line x1="60" y1="60" x2="84" y2="66" strokeWidth="4" strokeLinecap="round" className="stroke-[#111] dark:stroke-[#f5f5f5]" />
+      <circle cx="60" cy="60" r="5" className="fill-[#111] dark:fill-[#f5f5f5]" />
     </svg>
   );
 }
@@ -43,23 +45,28 @@ export default function WhyChooseMe() {
   return (
     <section className="mx-auto max-w-[1180px] px-4 py-24">
       <Reveal className="text-center">
-        <h2 className="text-[40px] font-bold leading-[1.1] tracking-tight text-[#111]">
+        <h2 className="text-[40px] font-bold leading-[1.1] tracking-tight text-[#111] dark:text-[#f5f5f5]">
           Many Reasons why you
           <br />
-          Should <span className="text-[#cfcfcf]">Choose Me</span>
+          Should <span className="text-[#cfcfcf] dark:text-[#555]">Choose Me</span>
         </h2>
       </Reveal>
 
       <div className="mt-12 grid gap-5 md:grid-cols-3">
         {/* Popular Services — 5×2 icon grid */}
         <Reveal delay={0} className="h-full">
-          <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm">
-            <h3 className="text-[17px] font-bold text-ink">Popular Services</h3>
-            <p className="mt-1 text-sm text-[#666]">End-to-end web development and AI workflow automation.</p>
+          <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm dark:border-[#262626] dark:bg-[#161616]">
+            <h3 className="text-[17px] font-bold text-ink dark:text-[#f5f5f5]">Popular Services</h3>
+            <p className="mt-1 text-sm text-[#666] dark:text-[#a3a3a3]">End-to-end web development and AI workflow automation.</p>
             <div className="mt-5 grid grid-cols-4 gap-2">
-              {serviceIcons.map(({ Icon, color, name }) => (
-                <span key={name} title={name} className="flex h-12 items-center justify-center rounded-xl border border-line bg-white shadow-sm">
-                  <Icon size={22} color={color} />
+              {serviceIcons.map(({ Icon, color, darkColor, name }) => (
+                <span
+                  key={name}
+                  title={name}
+                  className="flex h-12 items-center justify-center rounded-xl border border-line bg-white text-[var(--ic)] shadow-sm dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-[var(--ic-dark)]"
+                  style={{ "--ic": color, "--ic-dark": darkColor ?? color } as CSSProperties}
+                >
+                  <Icon size={22} />
                 </span>
               ))}
             </div>
@@ -87,14 +94,14 @@ export default function WhyChooseMe() {
 
         {/* Vast Knowledge — scattered rotated pills, fully inside */}
         <Reveal delay={0.1} className="h-full">
-          <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm">
-            <h3 className="text-[17px] font-bold text-ink">Vast Knowledge</h3>
-            <p className="mt-1 text-sm text-[#666]">Broad expertise across the stack — one person can carry a project end to end.</p>
+          <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm dark:border-[#262626] dark:bg-[#161616]">
+            <h3 className="text-[17px] font-bold text-ink dark:text-[#f5f5f5]">Vast Knowledge</h3>
+            <p className="mt-1 text-sm text-[#666] dark:text-[#a3a3a3]">Broad expertise across the stack — one person can carry a project end to end.</p>
             <div className="mt-5 flex flex-wrap gap-1.5 px-1">
               {["Full-Stack", "Agentic AI", "Next.js", "n8n", "Supabase", "WordPress", "SEO", "APIs"].map((p, i) => (
                 <span
                   key={p}
-                  className="inline-block rounded-full border border-line bg-neutral-50 px-3.5 py-1.5 text-[13px] font-semibold text-neutral-600"
+                  className="inline-block rounded-full border border-line bg-neutral-50 px-3.5 py-1.5 text-[13px] font-semibold text-neutral-600 dark:border-[#262626] dark:bg-[#1a1a1a] dark:text-neutral-400"
                   style={{ transform: `rotate(${[-18, 12, -8, 16, -14, 8, -20, 10][i]}deg) translateY(${[0, 3, -2, 4, -3, 2, 0, -2][i]}px)` }}
                 >
                   {p}
@@ -107,20 +114,20 @@ export default function WhyChooseMe() {
 
       <div className="mt-5 grid gap-5 md:grid-cols-2">
         <Reveal className="h-full">
-          <div className="flex h-full items-start gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm">
+          <div className="flex h-full items-start gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm dark:border-[#262626] dark:bg-[#161616]">
             <ClockArt />
             <div>
-              <h3 className="text-[17px] font-bold text-ink">Fast Execution</h3>
-              <p className="mt-2 text-sm leading-relaxed text-[#666]">Delivering working, tested builds on tight timelines — without cutting corners on quality.</p>
+              <h3 className="text-[17px] font-bold text-ink dark:text-[#f5f5f5]">Fast Execution</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#666] dark:text-[#a3a3a3]">Delivering working, tested builds on tight timelines — without cutting corners on quality.</p>
             </div>
           </div>
         </Reveal>
         <Reveal delay={0.05} className="h-full">
-          <div className="flex h-full items-start gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm">
+          <div className="flex h-full items-start gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm dark:border-[#262626] dark:bg-[#161616]">
             <CollabArt />
             <div>
-              <h3 className="text-[17px] font-bold text-ink">Collaboration</h3>
-              <p className="mt-2 text-sm leading-relaxed text-[#666]">Clear communication and partnership throughout the project — you always know where things stand.</p>
+              <h3 className="text-[17px] font-bold text-ink dark:text-[#f5f5f5]">Collaboration</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#666] dark:text-[#a3a3a3]">Clear communication and partnership throughout the project — you always know where things stand.</p>
             </div>
           </div>
         </Reveal>

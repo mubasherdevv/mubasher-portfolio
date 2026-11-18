@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 
 const tiles = [
@@ -34,18 +34,36 @@ const tokens: Token[] = [
 ];
 const WORD_COUNT = 11;
 
-/** One word of the pinned scrub: pale grey → solid black, tied to scroll position.
+/** Reads the "dark" class on <html> (set by the theme script / toggle) and
+    stays in sync when it changes, so the scrub colours flip with the theme. */
+function useIsDark() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const el = document.documentElement;
+    const update = () => setDark(el.classList.contains("dark"));
+    update();
+    const obs = new MutationObserver(update);
+    obs.observe(el, { attributes: true, attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
+  return dark;
+}
+
+/** One word of the pinned scrub: pale grey → solid black (light mode) or
+    dark grey → near-white (dark mode), tied to scroll position.
     Scrolling back up reverses it. No blur, no slide — colour only. */
 function ScrubWord({
   progress,
   idx,
+  colors,
   children,
 }: {
   progress: MotionValue<number>;
   idx: number;
+  colors: [string, string];
   children: string;
 }) {
-  const color = useTransform(progress, [idx / WORD_COUNT, (idx + 1) / WORD_COUNT], ["#d0d0d0", "#111111"]);
+  const color = useTransform(progress, [idx / WORD_COUNT, (idx + 1) / WORD_COUNT], colors);
   return (
     <motion.span style={{ color }} className="mr-[0.28em] inline-block">
       {children}
@@ -61,8 +79,10 @@ function ScrubWord({
  */
 export default function IntroStatement() {
   const [on, setOn] = useState(true);
+  const dark = useIsDark();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  const scrubColors: [string, string] = dark ? ["#404040", "#f5f5f5"] : ["#d0d0d0", "#111111"];
 
   return (
     <section className="relative mx-auto max-w-[1180px] px-4">
@@ -85,7 +105,7 @@ export default function IntroStatement() {
           <p className="relative z-10 mx-auto max-w-[900px] text-[36px] font-bold leading-[1.2] tracking-tight sm:text-[40px]">
             {tokens.map((t, i) =>
               t.kind === "word" ? (
-                <ScrubWord key={i} progress={scrollYProgress} idx={t.idx}>
+                <ScrubWord key={i} progress={scrollYProgress} idx={t.idx} colors={scrubColors}>
                   {t.text}
                 </ScrubWord>
               ) : t.kind === "yellow" ? (
@@ -111,12 +131,12 @@ export default function IntroStatement() {
             aria-label="Toggle"
             onClick={() => setOn(!on)}
             className={`relative z-10 mx-auto mt-8 flex h-[56px] w-[110px] items-center rounded-full p-1.5 transition-colors duration-300 ${
-              on ? "bg-gradient-to-r from-[#f97316] to-[#ef4444] justify-end" : "bg-neutral-300 justify-start"
+              on ? "bg-gradient-to-r from-[#f97316] to-[#ef4444] justify-end" : "bg-neutral-300 justify-start dark:bg-[#333]"
             }`}
           >
             <span className={`h-[52px] w-[52px] rounded-full shadow-md ${on ? "bg-[#a7f3d0]" : "bg-white"}`} />
           </button>
-          <p className="relative z-10 mx-auto mt-6 max-w-xl text-[16px] leading-relaxed text-[#666]">
+          <p className="relative z-10 mx-auto mt-6 max-w-xl text-[16px] leading-relaxed text-[#666] dark:text-[#a3a3a3]">
             Full-stack development, AI integrations and workflow automation — practical tools that connect models, APIs and business workflows.
           </p>
         </div>
