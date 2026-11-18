@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Subset Noto Nastaliq Urdu — only the 17 codepoints the site renders
+   (محمد مبشر / لاہور، پاکستان / اردو). 80 KB vs the 239 KB full arabic
+   subset that next/font shipped; variable wght 400–700 so bold renders
+   truly. Built with pyftsubset (default layout closure); shaping verified
+   identical to the full font with HarfBuzz at both weights. */
+@font-face {
+  font-family: "NastaliqSubset";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/nastaliq-subset.woff2") format("woff2");
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -79,9 +92,9 @@ section[id] {
   cursor: none;
 }
 
-/* Urdu name rendering (Noto Nastaliq Urdu) — Nastaliq needs tall line-height */
+/* Urdu name rendering (subset Noto Nastaliq Urdu) — Nastaliq needs tall line-height */
 .font-urdu {
-  font-family: var(--font-urdu), "Noto Nastaliq Urdu", serif;
+  font-family: "NastaliqSubset", "Noto Nastaliq Urdu", serif;
 }
 
 /* Giant footer wordmark — solid brand orange in BOTH modes with a subtle

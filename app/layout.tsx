@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Caveat, Noto_Nastaliq_Urdu } from "next/font/google";
+import { Inter, Caveat } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-inter" });
 const caveat = Caveat({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-caveat" });
-const urdu = Noto_Nastaliq_Urdu({
-  subsets: ["arabic"],
-  weight: ["400", "700"],
-  variable: "--font-urdu",
-  // Default display:swap (NOT block). next/font already emits a
-  // metric-matched fallback (size-adjust), so the preloader name paints
-  // immediately in the fallback and swaps in — block made the LCP element
-  // wait ~1s for the Nastaliq woff2 on Slow 4G. The name <p> has a fixed
-  // height, so the swap cannot shift its rect (CLS stays 0).
-});
+
+// NOTE: the Urdu name font is NOT a next/font Google font any more — the
+// full Noto Nastaliq Urdu arabic subset is 239 KB and was the mobile LCP
+// bottleneck. It is replaced by a hand-subset woff2
+// (public/fonts/nastaliq-subset.woff2, 80 KB, only the 17 codepoints the
+// site renders) declared via @font-face in globals.css and preloaded below.
 
 /** Runs before first paint: applies the saved theme (localStorage
     "mubasher-theme") or the OS preference, so there is no light-flash. */
@@ -35,9 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preload" href="/fonts/nastaliq-subset.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${inter.variable} ${caveat.variable} ${urdu.variable} font-sans dark:bg-[#0a0a0a] dark:text-[#f5f5f5]`}>{children}</body>
+      <body className={`${inter.variable} ${caveat.variable} font-sans dark:bg-[#0a0a0a] dark:text-[#f5f5f5]`}>{children}</body>
     </html>
   );
 }
