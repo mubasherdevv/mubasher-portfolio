@@ -42,7 +42,7 @@ export default function Footer() {
 
           {/* Giant wordmark — clipped by overflow-hidden wrapper, letters never sliced by a divider */}
           <div className="overflow-hidden pb-1 pt-6" aria-hidden="true">
-            <p className="wordmark select-none text-center font-extrabold tracking-tight" style={{ fontSize: "clamp(90px, 24vw, 300px)" }}>
+            <p className="wordmark select-none text-center font-extrabold tracking-tight" style={{ fontSize: "clamp(80px, 14vw, 180px)" }}>
               Mubasher
             </p>
           </div>

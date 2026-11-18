@@ -5,28 +5,25 @@ import { profile, projects } from "@/lib/data";
 import Mockup from "./Mockup";
 
 const fade = (delay: number) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
+  initial: { opacity: 0, y: 24, filter: "blur(4px)" },
+  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
   transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
 const marqueeCards = [...projects, ...projects, ...projects, ...projects];
 
+/** Floating cursor pill — static position, no bobbing (Twambi's pills don't visibly drift). */
 function FloatPill({
   label,
   color,
   className,
-  delay = 0,
 }: {
   label: string;
   color: string;
   className: string;
-  delay?: number;
 }) {
   return (
-    <motion.span
-      animate={{ y: [0, -9, 0] }}
-      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay }}
+    <span
       className={`absolute hidden items-center gap-1.5 rounded-full border border-neutral-200/80 bg-white px-3.5 py-2 text-[13px] font-semibold shadow-[0_6px_20px_rgba(0,0,0,0.08)] lg:flex ${className}`}
       style={{ color }}
     >
@@ -34,7 +31,7 @@ function FloatPill({
         <path d="M1 1 L11 6 L6 7 L4 11 Z" />
       </svg>
       {label}
-    </motion.span>
+    </span>
   );
 }
 
@@ -89,8 +86,8 @@ export default function Hero() {
         </motion.div>
 
         <FloatPill label="Full-Stack" color="#2563eb" className="left-[7%] top-60 -rotate-6" />
-        <FloatPill label="Agentic AI" color="#7c3aed" className="right-[7%] top-52 rotate-6" delay={0.8} />
-        <FloatPill label="Next.js" color="#ea580c" className="bottom-44 right-[13%] -rotate-3" delay={1.4} />
+        <FloatPill label="Agentic AI" color="#7c3aed" className="right-[7%] top-52 rotate-6" />
+        <FloatPill label="Next.js" color="#ea580c" className="bottom-44 right-[13%] -rotate-3" />
       </div>
 
       {/* Hero project marquee — very slow drift, large cards */}

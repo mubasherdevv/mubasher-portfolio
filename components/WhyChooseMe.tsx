@@ -1,8 +1,19 @@
 import Reveal from "./Reveal";
 import { whyChooseMe } from "@/lib/data";
-import { SiGithub, SiNextdotjs, SiN8N, SiReact, SiSupabase, SiTypescript, SiWordpress } from "react-icons/si";
+import { SiGithub, SiJavascript, SiNextdotjs, SiNodedotjs, SiReact, SiSupabase, SiTailwindcss, SiTypescript } from "react-icons/si";
+import type { IconType } from "react-icons";
 
-const toolIcons = [SiReact, SiNextdotjs, SiTypescript, SiSupabase, SiN8N, SiGithub, SiWordpress];
+/** Popular Services tiles — colourful brand icons (4-column grid, 2 rows). */
+const serviceIcons: { Icon: IconType; color: string; name: string }[] = [
+  { Icon: SiReact, color: "#61DAFB", name: "React" },
+  { Icon: SiNextdotjs, color: "#000000", name: "Next.js" },
+  { Icon: SiTypescript, color: "#3178C6", name: "TypeScript" },
+  { Icon: SiJavascript, color: "#F7DF1E", name: "JavaScript" },
+  { Icon: SiTailwindcss, color: "#06B6D4", name: "Tailwind CSS" },
+  { Icon: SiNodedotjs, color: "#339933", name: "Node.js" },
+  { Icon: SiSupabase, color: "#3ECF8E", name: "Supabase" },
+  { Icon: SiGithub, color: "#181717", name: "GitHub" },
+];
 
 function ClockArt() {
   return (
@@ -45,26 +56,18 @@ export default function WhyChooseMe() {
           <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm">
             <h3 className="text-[17px] font-bold text-ink">Popular Services</h3>
             <p className="mt-1 text-sm text-[#666]">End-to-end web development and AI workflow automation.</p>
-            <div className="mt-5 grid grid-cols-5 gap-2">
-              {toolIcons.slice(0, 5).map((Icon, i) => (
-                <span key={i} className="flex h-12 items-center justify-center rounded-xl border border-line bg-white text-neutral-700 shadow-sm">
-                  <Icon size={22} />
+            <div className="mt-5 grid grid-cols-4 gap-2">
+              {serviceIcons.map(({ Icon, color, name }) => (
+                <span key={name} title={name} className="flex h-12 items-center justify-center rounded-xl border border-line bg-white shadow-sm">
+                  <Icon size={22} color={color} />
                 </span>
               ))}
-              {toolIcons.slice(5).map((Icon, i) => (
-                <span key={i} className="flex h-12 items-center justify-center rounded-xl border border-line bg-white text-neutral-700 shadow-sm">
-                  <Icon size={22} />
-                </span>
-              ))}
-              <span className="flex h-12 items-center justify-center rounded-xl bg-[#ff6b00] text-[11px] font-bold text-white">+3</span>
-              <span className="flex h-12 items-center justify-center rounded-xl border border-line bg-neutral-50 text-[11px] font-bold text-neutral-500">SEO</span>
-              <span className="flex h-12 items-center justify-center rounded-xl border border-line bg-neutral-50 text-[11px] font-bold text-neutral-500">API</span>
             </div>
           </div>
         </Reveal>
 
         {/* Robust products — black card, iridescent lightning */}
-        <Reveal delay={0.08} className="h-full">
+        <Reveal delay={0.05} className="h-full">
           <div className="relative flex h-[270px] flex-col overflow-hidden rounded-[24px] bg-neutral-900 p-6 text-white shadow-sm">
             <h3 className="text-[17px] font-bold">Robust products</h3>
             <p className="mt-1 text-sm text-neutral-400">Clean, maintainable code — built to keep working, not just to launch.</p>
@@ -83,16 +86,16 @@ export default function WhyChooseMe() {
         </Reveal>
 
         {/* Vast Knowledge — scattered rotated pills, fully inside */}
-        <Reveal delay={0.16} className="h-full">
+        <Reveal delay={0.1} className="h-full">
           <div className="flex h-[270px] flex-col rounded-[24px] border border-line bg-white p-6 shadow-sm">
             <h3 className="text-[17px] font-bold text-ink">Vast Knowledge</h3>
             <p className="mt-1 text-sm text-[#666]">Broad expertise across the stack — one person can carry a project end to end.</p>
-            <div className="mt-5 flex flex-wrap gap-2 px-1">
+            <div className="mt-5 flex flex-wrap gap-1.5 px-1">
               {["Full-Stack", "Agentic AI", "Next.js", "n8n", "Supabase", "WordPress", "SEO", "APIs"].map((p, i) => (
                 <span
                   key={p}
                   className="inline-block rounded-full border border-line bg-neutral-50 px-3.5 py-1.5 text-[13px] font-semibold text-neutral-600"
-                  style={{ transform: `rotate(${[-8, 6, -4, 9, -6, 4, -9, 5][i]}deg)` }}
+                  style={{ transform: `rotate(${[-18, 12, -8, 16, -14, 8, -20, 10][i]}deg) translateY(${[0, 3, -2, 4, -3, 2, 0, -2][i]}px)` }}
                 >
                   {p}
                 </span>
@@ -112,7 +115,7 @@ export default function WhyChooseMe() {
             </div>
           </div>
         </Reveal>
-        <Reveal delay={0.08} className="h-full">
+        <Reveal delay={0.05} className="h-full">
           <div className="flex h-full items-start gap-5 rounded-[24px] border border-line bg-white p-6 shadow-sm">
             <CollabArt />
             <div>

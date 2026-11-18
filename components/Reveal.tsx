@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
-import WordReveal from "./WordReveal";
 
 /** Scroll reveal: fade + slide up only. No blur — blur left text looking unfinished. */
 export default function Reveal({
@@ -36,7 +35,9 @@ export function SectionLabel({ children }: { children: ReactNode }) {
   );
 }
 
-/** Heading with Twambi's word-by-word pale-to-black reveal. `pale` words stay pale. */
+/** Static two-tone heading (Twambi): first part solid black, last word(s) stay
+    pale grey forever. No word-by-word animation — the whole heading enters
+    with the normal Reveal fade+rise. */
 export function SectionHeading({
   dark,
   pale,
@@ -46,14 +47,13 @@ export function SectionHeading({
   pale: string;
   align?: "center" | "left";
 }) {
-  const paleWords = pale.split(" ").map((w) => w.replace(/[.,]/g, ""));
   return (
     <h2
       className={`text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl ${
         align === "center" ? "text-center" : "text-left"
       }`}
     >
-      <WordReveal text={`${dark} ${pale}`} pale={paleWords} />
+      {dark} <span className="text-[#cfcfcf]">{pale}</span>
     </h2>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -25,11 +26,25 @@ function NavLink({ label, href, onClick }: { label: string; href: string; onClic
   );
 }
 
-/** Floating pill nav ~440×64px, centred. No black Contact button (Twambi has none). */
+/** Floating pill nav ~440×64px, centred. No black Contact button (Twambi has none).
+    Hides while scrolling down, reappears when scrolling up. */
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+  const prevY = useRef(0);
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const prev = prevY.current;
+    if (y > prev && y > 140) setHidden(true);
+    else if (y < prev) setHidden(false);
+    prevY.current = y;
+  });
   return (
-    <header className="fixed inset-x-0 top-6 z-50 flex justify-center px-4">
+    <motion.header
+      animate={{ y: hidden ? "-130%" : "0%" }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="fixed inset-x-0 top-6 z-50 flex justify-center px-4"
+    >
       <nav className="flex h-16 w-[440px] max-w-full items-center justify-between rounded-2xl border border-neutral-200/80 bg-white/95 px-3 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-md">
         <a href="#home" className="flex h-12 w-12 items-center justify-center rounded-xl border border-neutral-200 bg-white text-xl font-extrabold tracking-tight text-ink" aria-label="Home">
           m<span className="text-[#ff6b00]">.</span>
@@ -56,6 +71,6 @@ export default function Navbar() {
           ))}
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }

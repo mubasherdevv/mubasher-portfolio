@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import Reveal from "./Reveal";
-import WordReveal from "./WordReveal";
 import { profile, stats, languages } from "@/lib/data";
 import { SiNextdotjs, SiN8N, SiReact, SiSupabase } from "react-icons/si";
 
@@ -45,7 +44,8 @@ export default function About() {
       </Reveal>
       <Reveal className="mt-5">
         <h2 className="mx-auto max-w-3xl text-center text-[36px] font-bold leading-[1.1] tracking-tight sm:text-[40px]">
-          <WordReveal text="Building web apps & AI workflows that solve real problems" pale={["solve", "real", "problems"]} />
+          <span className="text-[#111]">Building web apps &amp; AI workflows that</span>{" "}
+          <span className="text-[#cfcfcf]">solve real problems</span>
         </h2>
       </Reveal>
 

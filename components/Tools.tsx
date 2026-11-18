@@ -1,51 +1,63 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Reveal, { SectionHeading } from "./Reveal";
-import { tools } from "@/lib/data";
 import {
-  SiCss, SiGit, SiGithub, SiGooglegemini, SiHtml5, SiJavascript, SiN8N,
-  SiNextdotjs, SiNodedotjs, SiChatbot, SiReact, SiSupabase, SiTailwindcss,
-  SiTypescript, SiWordpress,
+  SiGithub, SiJavascript, SiNextdotjs, SiNodedotjs, SiReact,
+  SiSupabase, SiTailwindcss, SiTypescript,
 } from "react-icons/si";
 import type { IconType } from "react-icons";
 
-const icons: Record<string, IconType> = {
-  "React": SiReact, "Next.js": SiNextdotjs, "TypeScript": SiTypescript, "JavaScript": SiJavascript,
-  "Tailwind CSS": SiTailwindcss, "Node.js": SiNodedotjs, "Supabase": SiSupabase, "OpenAI API": SiChatbot,
-  "Gemini API": SiGooglegemini, "n8n": SiN8N, "Git": SiGit, "GitHub": SiGithub,
-  "WordPress": SiWordpress,
-};
+/**
+ * Tools — Twambi layout: 8 colourful brand icons in 4 pairs FLANKING the
+ * centred heading (not a grid below it). Row 1 above the heading (inset),
+ * row 2 level with the heading (far edges), row 3 below the subtitle
+ * (far edges), row 4 at the bottom (inset). ~150px between rows.
+ * Icons fade+rise per row (top first), then stay completely static.
+ */
+const rows: { left: { Icon: IconType; color: string; name: string }; right: { Icon: IconType; color: string; name: string }; inset: boolean }[] = [
+  { left: { Icon: SiReact, color: "#61DAFB", name: "React" }, right: { Icon: SiNextdotjs, color: "#000000", name: "Next.js" }, inset: true },
+  { left: { Icon: SiTypescript, color: "#3178C6", name: "TypeScript" }, right: { Icon: SiJavascript, color: "#F7DF1E", name: "JavaScript" }, inset: false },
+  { left: { Icon: SiTailwindcss, color: "#06B6D4", name: "Tailwind CSS" }, right: { Icon: SiNodedotjs, color: "#339933", name: "Node.js" }, inset: false },
+  { left: { Icon: SiSupabase, color: "#3ECF8E", name: "Supabase" }, right: { Icon: SiGithub, color: "#181717", name: "GitHub" }, inset: true },
+];
 
-/** Scattered floating tool icons around the centred heading — no text-pill grid. */
-export default function Tools() {
-  const positions = [
-    { left: "4%", top: "18%", r: -8, d: "0s" }, { left: "16%", top: "62%", r: 6, d: "0.6s" },
-    { left: "30%", top: "12%", r: 5, d: "1.1s" }, { left: "66%", top: "14%", r: -6, d: "0.3s" },
-    { left: "80%", top: "58%", r: 8, d: "0.9s" }, { left: "90%", top: "20%", r: -5, d: "1.4s" },
-    { left: "10%", top: "42%", r: 4, d: "1.8s" }, { left: "88%", top: "42%", r: -7, d: "0.2s" },
-    { left: "44%", top: "76%", r: 6, d: "1.2s" }, { left: "58%", top: "78%", r: -4, d: "0.7s" },
-    { left: "24%", top: "82%", r: -6, d: "1.6s" }, { left: "74%", top: "80%", r: 5, d: "0.4s" },
-  ];
+function ToolTile({ Icon, color, name }: { Icon: IconType; color: string; name: string }) {
   return (
-    <section className="relative mx-auto max-w-[1180px] overflow-hidden px-4 py-24">
-      <Reveal className="relative z-10 text-center">
-        <SectionHeading dark="A Collection of Tools I Use to" pale="Bring Ideas to Life" />
-        <p className="mt-4 text-[15px] text-[#666]">Designing &amp; Crafting — The Tools That Bring Ideas to Life</p>
-      </Reveal>
-      <div className="relative mx-auto mt-4 h-[340px] max-w-[900px]">
-        {tools.slice(0, 12).map((t, i) => {
-          const Icon = icons[t];
-          const p = positions[i % positions.length];
-          if (!Icon) return null;
-          return (
-            <span
-              key={t}
-              title={t}
-              className="absolute flex h-16 w-16 animate-floaty items-center justify-center rounded-2xl border border-line bg-white text-neutral-500 shadow-[0_8px_24px_rgba(0,0,0,0.07)]"
-              style={{ left: p.left, top: p.top, ["--r" as string]: `${p.r}deg`, animationDelay: p.d }}
-            >
-              <Icon size={30} />
-            </span>
-          );
-        })}
+    <span
+      title={name}
+      className="flex h-[58px] w-[58px] items-center justify-center rounded-2xl border border-line bg-white shadow-[0_8px_24px_rgba(0,0,0,0.07)]"
+    >
+      <Icon size={34} color={color} />
+    </span>
+  );
+}
+
+export default function Tools() {
+  return (
+    <section className="relative mx-auto max-w-[1180px] px-4 py-24">
+      <div className="relative mx-auto flex h-[660px] flex-col justify-between">
+        {rows.map((row, i) => (
+          <motion.div
+            key={i}
+            className={`flex items-center justify-between ${row.inset ? "px-[16%]" : "px-0"}`}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <ToolTile {...row.left} />
+            <ToolTile {...row.right} />
+          </motion.div>
+        ))}
+
+        {/* Heading + subtitle centred in the middle of the icon field */}
+        <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
+          <Reveal>
+            <SectionHeading dark="A Collection of Tools I Use to" pale="Bring Ideas to Life" />
+            <p className="mt-4 text-[15px] text-[#666]">Designing &amp; Crafting — The Tools That Bring Ideas to Life</p>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
